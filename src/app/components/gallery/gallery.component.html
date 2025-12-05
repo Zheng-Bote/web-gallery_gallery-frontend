@@ -1,0 +1,36 @@
+<div class="gallery-container">
+  @if (isLoading()) {
+  <div class="loading-shade">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  }
+
+  <div class="gallery-actions">
+    <h2 class="current-folder-title">
+      {{ getCurrentFolderName() }}
+    </h2>
+
+    <button mat-stroked-button (click)="copyLink()">
+      <mat-icon>share</mat-icon>
+      Link teilen
+    </button>
+  </div>
+
+  <div class="gallery-grid">
+    @for (item of items(); track item.name) { @if (item.type === 'folder') {
+    <a [routerLink]="['/gallery']" [queryParams]="{ path: item.path }" class="gallery-item folder">
+      <mat-icon class="folder-icon">folder</mat-icon>
+      <span class="label">{{ item.name }}</span>
+    </a>
+    } @if (item.type === 'image') {
+    <div class="gallery-item image" (click)="openImage(item)">
+      <img [src]="item.url" [alt]="item.name" loading="lazy" />
+      <div class="overlay">
+        <span>{{ item.name }}</span>
+      </div>
+    </div>
+    } } @empty { @if (!isLoading()) {
+    <p class="empty-state">Dieser Ordner ist leer.</p>
+    } }
+  </div>
+</div>

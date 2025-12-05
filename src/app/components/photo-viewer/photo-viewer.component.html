@@ -1,0 +1,24 @@
+<div class="viewer-container">
+  <div class="image-wrapper">
+    <img [src]="currentImage().url" [alt]="currentImage().name" class="main-image" />
+  </div>
+
+  <div class="viewer-footer">
+    <span class="image-title">{{ currentImage().name }}</span>
+    <span class="image-counter"> {{ currentIndex() + 1 }} / {{ data.images.length }} </span>
+  </div>
+
+  <button mat-icon-button class="close-btn" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  @if (currentIndex() > 0) {
+  <button mat-icon-button class="nav-btn prev" (click)="prev()">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  } @if (currentIndex() < data.images.length - 1) {
+  <button mat-icon-button class="nav-btn next" (click)="next()">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+  }
+</div>

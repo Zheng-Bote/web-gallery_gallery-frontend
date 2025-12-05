@@ -1,0 +1,47 @@
+.upload-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.drop-zone {
+  border: 3px dashed var(--mat-sys-outline-variant);
+  border-radius: 16px;
+  padding: 48px;
+  text-align: center;
+  background-color: var(--mat-sys-surface-container-low);
+  transition: all 0.2s ease;
+  color: var(--mat-sys-on-surface-variant);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Wenn eine Datei drüber gehalten wird */
+.drop-zone.drag-over {
+  border-color: var(--mat-sys-primary);
+  background-color: var(--mat-sys-surface-container-highest);
+  transform: scale(1.01);
+}
+
+.upload-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: var(--mat-sys-primary);
+}
+
+.file-list {
+  margin-top: 32px;
+}
+
+.progress-section {
+  margin-top: 24px;
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}

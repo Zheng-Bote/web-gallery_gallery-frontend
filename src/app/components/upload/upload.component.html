@@ -1,0 +1,54 @@
+<div class="upload-container">
+  <div
+    class="drop-zone"
+    [class.drag-over]="isDragOver()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+  >
+    <mat-icon class="upload-icon">cloud_upload</mat-icon>
+    <h3>Bilder hier ablegen</h3>
+    <p>oder</p>
+
+    <button mat-flat-button color="primary" (click)="fileInput.click()">Dateien auswählen</button>
+
+    <input
+      #fileInput
+      type="file"
+      multiple
+      (change)="onFileSelected($event)"
+      style="display: none"
+    />
+  </div>
+
+  @if (isUploading()) {
+  <div class="progress-section">
+    <p>Lade hoch... {{ progress() | number : '1.0-0' }}%</p>
+    <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
+  </div>
+  } @if (files().length > 0) {
+  <div class="file-list">
+    <h3>Ausgewählte Dateien ({{ files().length }})</h3>
+
+    <mat-list>
+      @for (file of files(); track file.name; let i = $index) {
+      <mat-list-item>
+        <mat-icon matListItemIcon>image</mat-icon>
+        <span matListItemTitle>{{ file.name }}</span>
+        <span matListItemLine>{{ file.size / 1024 / 1024 | number : '1.2-2' }} MB</span>
+
+        <button mat-icon-button (click)="removeFile(i)" [disabled]="isUploading()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+      }
+    </mat-list>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="uploadAll()" [disabled]="isUploading()">
+        <mat-icon>upload</mat-icon> Jetzt hochladen
+      </button>
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+// Core Styles laden
+@include mat.core();
+
+// KORREKTUR: Doppelpunkt (:) statt Gleichheitszeichen (=)
+// Wir nutzen hier Standard-Paletten wie $blue-palette oder $indigo-palette
+$my-primary: mat.$blue-palette;
+$my-tertiary: mat.$orange-palette;
+
+// 1. Das LIGHT Theme
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $my-primary,
+      tertiary: $my-tertiary,
+    ),
+    typography: (
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+// 2. Das DARK Theme
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      // Dark Mode Schalter
+      primary: $my-primary,
+      tertiary: $my-tertiary,
+    ),
+  )
+);
+
+// 3. Anwendung auf HTML
+html {
+  // Standard (Light)
+  @include mat.all-component-themes($light-theme);
+  @include mat.system-level-colors($light-theme);
+  @include mat.system-level-typography($light-theme);
+}
+
+// 4. Override für Dark Mode Klasse
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  @include mat.system-level-colors($dark-theme);
+}

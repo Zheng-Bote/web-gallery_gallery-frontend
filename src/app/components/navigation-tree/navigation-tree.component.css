@@ -1,0 +1,27 @@
+/* Link Styling */
+.tree-link {
+  text-decoration: none;
+  color: var(--mat-sys-on-surface);
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tree-link:hover {
+  background-color: var(--mat-sys-surface-container-highest);
+}
+
+/* Wenn aktiv (durch routerLinkActive) */
+.tree-link.active-node {
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+  font-weight: 500;
+}
+
+mat-tree-node {
+  min-height: 40px; /* Kompakter als Standard */
+}

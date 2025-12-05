@@ -1,0 +1,73 @@
+.sidenav-container {
+  /* WICHTIG: Füllt den Rest des Bildschirms */
+  height: calc(100vh - 64px);
+}
+
+.sidenav {
+  width: 300px; /* Oder breiter, falls Baum tief verschachtelt */
+  padding: 10px;
+  background-color: var(
+    --mat-sys-surface-container-low
+  ); /* Optional: leicht abgesetzter Hintergrund */
+  border-right: 1px solid var(--mat-sys-outline-variant);
+}
+
+.active-link {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #3f51b5; /* Primary Color */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Breadcrumbs */
+.breadcrumb-bar {
+  padding: 8px 16px;
+  background: var(--mat-sys-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+.sep {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #999;
+}
+.crumb.link {
+  cursor: pointer;
+  color: #3f51b5;
+  text-decoration: underline;
+}
+
+.footer {
+  background-color: var(--mat-sys-surface-container);
+
+  color: var(--mat-sys-on-surface-variant);
+
+  border-top: 1px solid var(--mat-sys-outline-variant);
+
+  padding: 16px;
+  text-align: center;
+  margin-top: auto; /* Drückt Footer nach unten */
+}
+
+.user-info {
+  font-size: 1rem;
+}
+
+.nav-caption {
+  margin-left: 8px;
+  /* Optional: Auf Mobile ausblenden */
+}

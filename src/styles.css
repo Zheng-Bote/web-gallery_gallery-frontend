@@ -1,0 +1,53 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Damit der Dialog Fullscreen wird und keine runden Ecken hat */
+.full-screen-modal .mat-mdc-dialog-container {
+  padding: 0;
+  --mdc-dialog-container-color: black; /* Hintergrund schwarz */
+}
+
+/* --- Notification Toasts --- */
+
+/* Basis für den Text im Toast */
+.mat-mdc-snack-bar-label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Success (Grünlich) */
+.toast-success {
+  /*
+  --mdc-snackbar-container-color: #e6f4ea;
+   --mdc-snackbar-supporting-text-color: #1e4620;
+  --mat-snack-bar-button-color: #1e4620;
+*/
+  /* Wir überschreiben die internen Variablen der Komponente */
+  --mdc-snackbar-container-color: #e6f4ea !important; /* Hintergrund */
+  --mdc-snackbar-supporting-text-color: #1e4620 !important; /* Text */
+  --mat-snack-bar-button-color: #1e4620 !important;
+}
+
+/* Error (Rötlich) */
+.toast-error {
+  /*
+  --mdc-snackbar-container-color: #fce8e6;
+  --mdc-snackbar-supporting-text-color: #c5221f;
+  --mat-snack-bar-button-color: #c5221f;
+*/
+  --mdc-snackbar-container-color: #fce8e6 !important;
+  --mdc-snackbar-supporting-text-color: #c5221f !important;
+  --mat-snack-bar-button-color: #c5221f !important;
+}
+
+/* Info (Dunkel / Standard) -- Nutzen wir einfach die Material Defaults (Dunkelgrau)*/
+.toast-info {
+  --mdc-snackbar-container-color: #e3f2fd !important;
+  --mdc-snackbar-supporting-text-color: #0d47a1 !important;
+  --mat-snack-bar-button-color: #0d47a1 !important;
+}

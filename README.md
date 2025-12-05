@@ -1,12 +1,12 @@
 <div id="top" align="center">
-<h1>GH Repo Template</h1>
+<h1>web-gallery_gallery-frontend</h1>
 
-<p>Template for new Github repos</p>
+<p>Angular Web-Frontend for Web-Gallery</p>
 
-[Report Issue](https://github.com/Zheng-Bote/repo-template/issues) [Request Feature](https://github.com/Zheng-Bote/repo-template/pulls)
+[Report Issue](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/issues) [Request Feature](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/pulls)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/repo-template?logo=GitHub)](https://github.com/Zheng-Bote/repo-template/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/web-gallery_gallery-frontend?logo=GitHub)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/releases)
 
 </div>
 
@@ -14,14 +14,15 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [Description](#description)
-    - [Features](#features)
+  - [Features](#features)
 - [Status](#status)
-    - [Documentation](#documentation)
-      - [README](#readme)
-      - [other Markdown files](#other-markdown-files)
+  - [Documentation](#documentation)
+    - [README](#readme)
+    - [other Markdown files](#other-markdown-files)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
   - [folder structure](#folder-structure)
@@ -43,8 +44,6 @@
   - [Screenshots](#screenshots)
 - [Authors and License](#authors-and-license)
   - [License](#license)
-    - [MIT License](#mit-license)
-    - [Apache License](#apache-license)
   - [Authors](#authors)
     - [Code Contributors](#code-contributors)
 
@@ -54,28 +53,18 @@
 
 # Description
 
-![QT](https://img.shields.io/badge/Community-6-41CD52?logo=qt)
-![CXX](https://img.shields.io/badge/C++-20-blue?logo=cplusplus)
-![Rust](https://img.shields.io/badge/Rust-Rocket-lightgrey?logo=rust)
-![Expressif](https://img.shields.io/badge/ESP-32-E7352C?logo=espressif)
-![GHA](https://img.shields.io/badge/Github-Action-black?logo=githubactions)
-![Node](https://img.shields.io/badge/Node-20-blue?logo=tsnode)
-![Angular](https://img.shields.io/badge/Angular-18+-red?logo=angular)
-![Vue](https://img.shields.io/badge/Vue-3+-4FC08D?logo=vuedotjs)
+![Angular](https://img.shields.io/badge/Angular-21+-red?logo=angular)
 ![HTML5](https://img.shields.io/badge/HTML-5+-E34F26?logo=html5)
-![Typescript](https://img.shields.io/badge/TypeScript-5+-3178C6?logo=typescript)
-![Svelte.js](https://img.shields.io/badge/Svelte-5-324FFF?logo=svelte)
-![Lit.js](https://img.shields.io/badge/Lit.js-324FFF?logo=lit)
-![CSS3](https://img.shields.io/badge/CSS-663399?logo=css3)
+![CSS3](https://img.shields.io/badge/CSS-3-663399?logo=css3)
 
-Repo template with README-template and some Github workflows and Github actions.
+Angular Web-Frontend for Web-Gallery
 
 ### Features
 
 - \[ ] advanced-super-extra-special feature xyz
 
   <br>
-  
+
 - \[x] OSS and license
 - \[x] works as designed
 - \[ ] no bugs
@@ -85,7 +74,7 @@ Repo template with README-template and some Github workflows and Github actions.
 - \[x] some more or less usefull Github Actions for GH-repo, GH-pages, GH-wiki, CI/CD-Pipelines
 - \[ ] Packagemanager
 - \[ ] Installation routine
-- \[ ] portable application 
+- \[ ] portable application
 
 <br>
 
@@ -96,39 +85,39 @@ Repo template with README-template and some Github workflows and Github actions.
 - \[ ] runs on Android
 - \[ ] runs on HarmonyOS
 
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 # Status
 
 :arrow_right: <mark>:warning: still under construction :warning:</mark> :arrow_left:
 
-![GitHub Created At](https://img.shields.io/github/created-at/Zheng-Bote/repo-template)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/repo-template?logo=GitHub)](https://github.com/Zheng-Bote/repo-template/releases)
-![GitHub Release Date](https://img.shields.io/github/release-date/Zheng-Bote/repo-template)
+![GitHub Created At](https://img.shields.io/github/created-at/Zheng-Bote/web-gallery_gallery-frontend)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/web-gallery_gallery-frontend?logo=GitHub)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/releases)
+![GitHub Release Date](https://img.shields.io/github/release-date/Zheng-Bote/web-gallery_gallery-frontend)
 ![Status](https://img.shields.io/badge/Status-stable-green)
 ![Status](https://img.shields.io/badge/Status-under_construction-red)
 ![Status](https://img.shields.io/badge/Status-works_as_designed-green)
 
-![GitHub Created At](https://img.shields.io/github/created-at/Zheng-Bote/repo-template)
-![GitHub Release Date](https://img.shields.io/github/release-date/Zheng-Bote/repo-template)
+![GitHub Created At](https://img.shields.io/github/created-at/Zheng-Bote/web-gallery_gallery-frontend)
+![GitHub Release Date](https://img.shields.io/github/release-date/Zheng-Bote/web-gallery_gallery-frontend)
 
-![GitHub Issues](https://img.shields.io/github/issues/Zheng-Bote/repo-template)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Zheng-Bote/repo-template)
+![GitHub Issues](https://img.shields.io/github/issues/Zheng-Bote/web-gallery_gallery-frontend)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Zheng-Bote/web-gallery_gallery-frontend)
 
 ### Documentation
 
-_see also:_ [Application Documentation](#documentation) 
+_see also:_ [Application Documentation](#documentation)
 
 #### README
-[![Repo - create Repo-Tree in README.md](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-create_tree_readme.yml/badge.svg)](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-create_tree_readme.yml)
-[![Repo - add Actions In/Out to README](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-actions_docu.yml/badge.svg)](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-actions_docu.yml)
 
-[![Repo - update Readme](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-call_Readme.yml/badge.svg)](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-call_Readme.yml)
+[![Repo - create Repo-Tree in README.md](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_tree_readme.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_tree_readme.yml)
+[![Repo - add Actions In/Out to README](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-actions_docu.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-actions_docu.yml)
+
+[![Repo - update Readme](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-call_Readme.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-call_Readme.yml)
 
 #### other Markdown files
 
-[![Repo - create TOC of Markdown files](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-create_doctoc_md.yml/badge.svg)](https://github.com/Zheng-Bote/repo-template/actions/workflows/repo-create_doctoc_md.yml)
+[![Repo - create TOC of Markdown files](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_doctoc_md.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_doctoc_md.yml)
 
 create ToC in Markdown files in folders
 
@@ -150,6 +139,7 @@ bla bla ... with a little help from my friends
 ## folder structure
 
 <!-- readme-tree start -->
+
 ```
 .
 ├── .github
@@ -181,6 +171,7 @@ bla bla ... with a little help from my friends
 
 6 directories, 21 files
 ```
+
 <!-- readme-tree end -->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -342,15 +333,11 @@ pie title me
 
 ## License
 
-**This Repo-Template is using the MIT-License**
-
-**_other licenses see files `LICENSE_<name>`\_**
-
-### MIT License
+**This web-gallery_gallery-frontend is using the MIT-License**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-Copyright (c) 2024 ZHENG Robert
+Copyright (c) 2025 ZHENG Robert
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -372,29 +359,13 @@ SOFTWARE.
 
         https://choosealicense.com/licenses/mit/
 
-### Apache License
-
-[![Apache License](https://img.shields.io/badge/License-Apache_v2.0-green.svg)](<[https://choosealicense.com/licenses/mit/](http://www.apache.org/licenses/LICENSE-2.0)>)
-
-Copyright (c) 2019 ZHENG Robert
-
-Licensed under the **Apache License, Version 2.0** (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
-See the License for the specific language governing permissions and limitations under the License.
-
 ## Authors
 
 - [![Zheng Robert](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
 
 ### Code Contributors
 
-![Contributors](https://img.shields.io/github/contributors/Zheng-Bote/repo-template?color=dark-green)
+![Contributors](https://img.shields.io/github/contributors/Zheng-Bote/web-gallery_gallery-frontend?color=dark-green)
 
 [![Zheng Robert](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
 

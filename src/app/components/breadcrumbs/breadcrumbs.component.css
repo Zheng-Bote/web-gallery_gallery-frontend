@@ -1,0 +1,44 @@
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.breadcrumb-link {
+  text-decoration: none;
+  color: var(--mat-sys-primary);
+  font-weight: 500;
+  transition: opacity 0.2s;
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+  }
+}
+
+.breadcrumb-current {
+  color: var(--mat-sys-on-surface);
+  font-weight: 400;
+}
+
+.separator {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  margin: 0 4px;
+  color: var(--mat-sys-outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
