@@ -14,15 +14,14 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
 - [Description](#description)
-  - [Features](#features)
+    - [Features](#features)
 - [Status](#status)
-  - [Documentation](#documentation)
-    - [README](#readme)
-    - [other Markdown files](#other-markdown-files)
+    - [Documentation](#documentation)
+      - [README](#readme)
+      - [other Markdown files](#other-markdown-files)
 - [Installation](#installation)
   - [Dependencies](#dependencies)
   - [folder structure](#folder-structure)
@@ -139,7 +138,6 @@ bla bla ... with a little help from my friends
 ## folder structure
 
 <!-- readme-tree start -->
-
 ```
 .
 ├── .github
@@ -161,17 +159,73 @@ bla bla ... with a little help from my friends
 │       ├── repo-create_doctoc.yml_
 │       ├── repo-create_doctoc_md.yml
 │       └── repo-create_tree_readme.yml
+├── .gitignore
 ├── LICENSE
-├── LICENSE_Apache-2
-├── LICENSE_GPL-2
-├── LICENSE_GPL-3
-├── LICENSE_MIT
 ├── README.md
-└── tree.bak
+├── angular.json
+├── package-lock.json
+├── package.json
+├── public
+│   └── favicon.ico
+├── src
+│   ├── app
+│   │   ├── app.config.ts
+│   │   ├── app.css
+│   │   ├── app.html
+│   │   ├── app.routes.ts
+│   │   ├── app.spec.ts
+│   │   ├── app.ts
+│   │   ├── components
+│   │   │   ├── breadcrumbs
+│   │   │   │   ├── breadcrumbs.component.css
+│   │   │   │   ├── breadcrumbs.component.html
+│   │   │   │   ├── breadcrumbs.component.spec.ts
+│   │   │   │   └── breadcrumbs.component.ts
+│   │   │   ├── gallery
+│   │   │   │   ├── gallery.component.css
+│   │   │   │   ├── gallery.component.html
+│   │   │   │   ├── gallery.component.spec.ts
+│   │   │   │   └── gallery.component.ts
+│   │   │   ├── login
+│   │   │   │   ├── login.component.css
+│   │   │   │   ├── login.component.html
+│   │   │   │   ├── login.component.spec.ts
+│   │   │   │   └── login.component.ts
+│   │   │   ├── navigation-tree
+│   │   │   │   ├── navigation-tree.component.css
+│   │   │   │   ├── navigation-tree.component.html
+│   │   │   │   └── navigation-tree.component.ts
+│   │   │   ├── photo-viewer
+│   │   │   │   ├── photo-viewer.component.css
+│   │   │   │   ├── photo-viewer.component.html
+│   │   │   │   └── photo-viewer.component.ts
+│   │   │   └── upload
+│   │   │       ├── upload.component.css
+│   │   │       ├── upload.component.html
+│   │   │       ├── upload.component.spec.ts
+│   │   │       └── upload.component.ts
+│   │   └── service
+│   │       ├── auth.guard.ts
+│   │       ├── auth.interceptor.ts_
+│   │       ├── auth.service.spec.ts
+│   │       ├── auth.service.ts
+│   │       ├── gallery.service.ts
+│   │       ├── layout.service.ts
+│   │       ├── navigation.model.ts
+│   │       ├── notification.service.ts
+│   │       ├── photo.model.ts
+│   │       └── theme.service.ts
+│   ├── custom-theme.scss
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.css
+├── tree.bak
+├── tsconfig.app.json
+├── tsconfig.json
+└── tsconfig.spec.json
 
-6 directories, 21 files
+17 directories, 67 files
 ```
-
 <!-- readme-tree end -->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
