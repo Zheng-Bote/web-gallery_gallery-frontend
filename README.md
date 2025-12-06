@@ -163,6 +163,8 @@ bla bla ... with a little help from my friends
 ├── LICENSE
 ├── README.md
 ├── angular.json
+├── docs
+│   └── nginx.md
 ├── package-lock.json
 ├── package.json
 ├── public
@@ -194,7 +196,8 @@ bla bla ... with a little help from my friends
 │   │   │   ├── navigation-tree
 │   │   │   │   ├── navigation-tree.component.css
 │   │   │   │   ├── navigation-tree.component.html
-│   │   │   │   └── navigation-tree.component.ts
+│   │   │   │   ├── navigation-tree.component.ts
+│   │   │   │   └── tree-node.component.ts
 │   │   │   ├── photo-viewer
 │   │   │   │   ├── photo-viewer.component.css
 │   │   │   │   ├── photo-viewer.component.html
@@ -204,18 +207,24 @@ bla bla ... with a little help from my friends
 │   │   │       ├── upload.component.html
 │   │   │       ├── upload.component.spec.ts
 │   │   │       └── upload.component.ts
+│   │   ├── interceptors
+│   │   │   └── auth.interceptor.ts
+│   │   ├── models
+│   │   │   ├── auth.model.ts
+│   │   │   └── photo.model.ts
 │   │   └── service
 │   │       ├── auth.guard.ts
-│   │       ├── auth.interceptor.ts_
 │   │       ├── auth.service.spec.ts
 │   │       ├── auth.service.ts
 │   │       ├── gallery.service.ts
 │   │       ├── layout.service.ts
 │   │       ├── navigation.model.ts
 │   │       ├── notification.service.ts
-│   │       ├── photo.model.ts
 │   │       └── theme.service.ts
 │   ├── custom-theme.scss
+│   ├── environments
+│   │   ├── environment.development.ts
+│   │   └── environment.ts
 │   ├── index.html
 │   ├── main.ts
 │   └── styles.css
@@ -224,7 +233,7 @@ bla bla ... with a little help from my friends
 ├── tsconfig.json
 └── tsconfig.spec.json
 
-17 directories, 67 files
+21 directories, 72 files
 ```
 <!-- readme-tree end -->
 
