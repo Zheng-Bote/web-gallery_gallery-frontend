@@ -1,18 +1,17 @@
-import { Component, inject, signal, effect } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinner } from '@angular/material/progress-spinner'; // Optional: Ladeindikator
-
-import { GalleryService, GalleryItem } from '../../service/gallery.service';
-import { LayoutService } from '../../service/layout.service'; // Dein LayoutService für Breadcrumbs
-
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatDialog } from '@angular/material/dialog';
-import { PhotoViewerComponent } from '../photo-viewer/photo-viewer.component';
+import { Clipboard } from '@angular/cdk/clipboard';
 
-import { Clipboard } from '@angular/cdk/clipboard'; // Angular CDK Helper
+import { GalleryService } from '../../service/gallery.service';
+import { LayoutService } from '../../service/layout.service';
 import { NotificationService } from '../../service/notification.service';
+import { PhotoViewerComponent } from '../photo-viewer/photo-viewer.component';
+import { GalleryItem } from '../../models/photo.model';
 
 @Component({
   selector: 'app-gallery',
@@ -21,34 +20,44 @@ import { NotificationService } from '../../service/notification.service';
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css',
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
+  private router = inject(Router);
   private route = inject(ActivatedRoute);
   private galleryService = inject(GalleryService);
-  private layoutService = inject(LayoutService); // Wichtig für Breadcrumbs
+  private layoutService = inject(LayoutService);
   private clipboard = inject(Clipboard);
   private notify = inject(NotificationService);
   private dialog = inject(MatDialog);
 
-  // State für die aktuellen Items (Bilder/Ordner)
+  // Signals
   items = signal<GalleryItem[]>([]);
   isLoading = signal<boolean>(false);
+  canShare = signal<boolean>(typeof navigator !== 'undefined' && !!navigator.share);
 
-  // Wir holen uns den 'path' QueryParam als Observable
-  // und reagieren darauf automatisch.
-  constructor() {
+  // NEU: Wir merken uns den aktuellen Pfad reactive
+  currentPath = signal<string>('');
+
+  // NEU: Der Titel berechnet sich automatisch neu, wenn currentPath sich ändert
+  folderTitle = computed(() => {
+    const path = this.currentPath();
+    if (!path) return 'Übersicht';
+    const parts = path.split('/');
+    // Letzten Teil nehmen und Unterstriche entfernen
+    return parts[parts.length - 1].replace(/_/g, ' ');
+  });
+
+  ngOnInit() {
     this.route.queryParams
       .pipe(
-        map((params) => params['path'] || ''), // Wenn leer, dann Root
+        map((params) => params['path'] || ''),
         tap((path) => {
-          // 1. Breadcrumbs aktualisieren (über deinen LayoutService)
-          // Wir nutzen die Funktion, die wir früher in GalleryComponent hatten,
-          // jetzt aber idealerweise im LayoutService liegt.
-          this.updateBreadcrumbs(path);
-
-          // 2. Ladezustand setzen
+          // State updaten
+          this.currentPath.set(path);
           this.isLoading.set(true);
+
+          // Breadcrumbs via Service updaten
+          this.layoutService.setBreadcrumbsFromPath(path);
         }),
-        // 3. Daten vom Service holen (switchMap bricht alte Requests ab, wenn man schnell klickt)
         switchMap((path) => this.galleryService.getDirectoryContent(path))
       )
       .subscribe({
@@ -57,63 +66,74 @@ export class GalleryComponent {
           this.isLoading.set(false);
         },
         error: (err) => {
-          console.error('Fehler beim Laden', err);
+          console.error('Ladefehler:', err);
+          this.notify.error('Konnte Ordnerinhalt nicht laden.');
           this.isLoading.set(false);
         },
       });
   }
 
-  // Hilfsfunktion für den Titel im HTML
-  getCurrentFolderName(): string {
-    const path = this.route.snapshot.queryParams['path'];
-    if (!path) return 'Übersicht';
-    const parts = path.split('/');
-    return parts[parts.length - 1].replace(/_/g, ' ');
+  navigateUp() {
+    const current = this.currentPath();
+    if (!current) return;
+
+    // Pfad splitten und letztes Element entfernen
+    const parts = current.split('/');
+    parts.pop();
+    const parentPath = parts.join('/');
+
+    // Navigieren
+    this.router.navigate(['/gallery'], { queryParams: { path: parentPath } });
   }
 
   copyLink() {
-    // Holt die aktuelle Browser-URL
-    const currentUrl = window.location.href;
+    const success = this.clipboard.copy(window.location.href);
+    if (success) this.notify.info('Link in die Zwischenablage kopiert!');
+  }
+  async shareNative() {
+    if (!this.canShare()) return;
 
-    // Kopiert in Zwischenablage
-    const success = this.clipboard.copy(currentUrl);
-
-    if (success) {
-      this.notify.info('Link in die Zwischenablage kopiert!');
-    } else {
-      this.notify.error('Konnte Link nicht kopieren.');
+    try {
+      await navigator.share({
+        title: 'CrowQt Galerie',
+        text: `Schau dir den Ordner "${this.folderTitle()}" an:`,
+        url: window.location.href,
+      });
+      // Optional: Erfolgsmeldung, aber meist gibt das OS Feedback
+    } catch (err) {
+      // User hat Share-Dialog abgebrochen oder Fehler
+      console.log('Teilen abgebrochen oder fehlgeschlagen', err);
     }
   }
 
-  // Diese Logik hattest du vorher, sie muss jetzt hier ausgeführt werden
-  // damit der LayoutService (und damit die App.html) die Breadcrumbs kennt.
-  private updateBreadcrumbs(fullPath: string) {
-    // Hier rufst du die Logik auf, die wir gestern besprochen haben.
-    // Am besten lagerst du die Logik "String -> Breadcrumb[]" in den LayoutService aus.
-    // Beispiel:
-    this.layoutService.setBreadcrumbsFromPath(fullPath);
-  }
-
   openImage(clickedItem: GalleryItem) {
-    // 1. Nur Bilder aus der aktuellen Liste filtern (keine Ordner im Viewer)
-    const imagesOnly = this.items().filter((x) => x.type === 'image');
+    if (clickedItem.type !== 'image') return;
 
-    // 2. Den Index des geklickten Bildes finden
+    const imagesOnly = this.items().filter((x) => x.type === 'image');
     const index = imagesOnly.findIndex((x) => x.name === clickedItem.name);
 
-    if (index === -1) return;
+    if (index !== -1) {
+      this.dialog.open(PhotoViewerComponent, {
+        // --- GRÖSSE & POSITION ---
+        width: '85vw', // 85% der Breite (etwas mehr als 80% sieht meist besser aus)
+        height: '85vh', // 85% der Höhe
+        maxWidth: '95vw', // Verhindert, dass es auf Ultrawide zu breit wird
+        maxHeight: '95vh',
 
-    // 3. Dialog öffnen
-    this.dialog.open(PhotoViewerComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      height: '100%',
-      width: '100%',
-      panelClass: 'full-screen-modal', // CSS Helper für Fullscreen
-      data: {
-        images: imagesOnly,
-        startIndex: index,
-      },
-    });
+        // --- STYLING ---
+        panelClass: 'photo-modal-panel', // Unsere Klasse für Schatten & Radius
+        backdropClass: 'blur-backdrop', // Unsere Klasse für den Blur-Effekt
+
+        // --- DATEN ---
+        data: {
+          images: imagesOnly,
+          startIndex: index,
+        },
+
+        // --- VERHALTEN ---
+        autoFocus: false, // Verhindert, dass der erste Button Fokus klaut
+        restoreFocus: false,
+      });
+    }
   }
 }

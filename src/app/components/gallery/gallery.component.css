@@ -4,77 +4,118 @@
   min-height: 200px;
 }
 
-.gallery-grid {
-  display: grid;
-  /* Responsives Grid: Kacheln sind mind. 150px breit */
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px;
-}
-
-/* Karten-Look für Items */
-.gallery-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1; /* Quadratisch */
-  border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: 12px;
-  background: var(--mat-sys-surface-container-low);
-  text-decoration: none;
-  color: var(--mat-sys-on-surface);
-  transition: transform 0.2s, box-shadow 0.2s;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.gallery-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background: var(--mat-sys-surface-container);
-}
-
-/* Ordner Spezifisch */
-.folder-icon {
-  font-size: 64px;
-  width: 64px;
-  height: 64px;
-  color: var(--mat-sys-primary); /* Material Primary Color */
-  margin-bottom: 8px;
-}
-
-/* Bild Spezifisch */
-.gallery-item.image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.loading-shade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.7);
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* --- ACTION BAR (HEADER) --- */
 .gallery-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
+  justify-content: space-between; /* Titel links, Buttons rechts */
+  align-items: center; /* Vertikal zentriert */
+  flex-wrap: wrap; /* Umbruch auf sehr kleinen Handys erlaubt */
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--mat-sys-outline-variant);
 }
 
 .current-folder-title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 22px;
+  font-weight: 500;
   color: var(--mat-sys-on-surface);
 }
+
+/* Wrapper für die beiden Buttons rechts */
+.action-buttons {
+  display: flex;
+  gap: 8px; /* Abstand zwischen "Teilen" und "Kopieren" */
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Etwas breiter */
+  gap: 16px;
+}
+
+.gallery-item {
+  position: relative; /* Wichtig für Overlay Positionierung */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: var(--mat-sys-surface-container-low);
+  text-decoration: none;
+  color: var(--mat-sys-on-surface);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-color: var(--mat-sys-primary);
+}
+
+/* --- FOLDER STYLES --- */
+.folder-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #ffca28; /* Ordner-Gelb sieht oft besser aus als Primary Color */
+  margin-bottom: 8px;
+}
+
+.label {
+  padding: 0 10px;
+  text-align: center;
+  /* Textkürzung bei langen Namen */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* --- IMAGE STYLES & OVERLAY (NEU) --- */
+.gallery-item.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/* Zoom-Effekt beim Hovern */
+.gallery-item.image:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 20px 10px 10px 10px;
+  opacity: 0; /* Standardmäßig unsichtbar */
+  transition: opacity 0.2s;
+  pointer-events: none; /* Klicks gehen durch */
+}
+
+.overlay span {
+  display: block;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Overlay beim Hovern anzeigen */
+.gallery-item.image:hover .overlay {
+  opacity: 1;
+}
+
+/* ... Loading Shade & Title Styles bleiben ... */

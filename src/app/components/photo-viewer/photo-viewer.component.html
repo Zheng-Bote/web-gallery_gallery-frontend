@@ -1,24 +1,59 @@
 <div class="viewer-container">
-  <div class="image-wrapper">
-    <img [src]="currentImage().url" [alt]="currentImage().name" class="main-image" />
-  </div>
-
-  <div class="viewer-footer">
-    <span class="image-title">{{ currentImage().name }}</span>
-    <span class="image-counter"> {{ currentIndex() + 1 }} / {{ data.images.length }} </span>
-  </div>
-
   <button mat-icon-button class="close-btn" (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
 
-  @if (currentIndex() > 0) {
-  <button mat-icon-button class="nav-btn prev" (click)="prev()">
-    <mat-icon>chevron_left</mat-icon>
-  </button>
-  } @if (currentIndex() < data.images.length - 1) {
-  <button mat-icon-button class="nav-btn next" (click)="next()">
-    <mat-icon>chevron_right</mat-icon>
-  </button>
-  }
+  <div class="image-wrapper">
+    <img [src]="currentImage().url" [alt]="currentImage().name" class="main-image" />
+
+    @if (currentIndex() > 0) {
+    <button mat-icon-button class="nav-btn prev" (click)="prev()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    } @if (currentIndex() < data.images.length - 1) {
+    <button mat-icon-button class="nav-btn next" (click)="next()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+    }
+  </div>
+
+  <div class="viewer-footer">
+    <div class="footer-info">
+      <h3 class="image-title">{{ currentImage().name }}</h3>
+
+      <div class="meta-row">
+        @if (currentImage().date) {
+        <div class="meta-badge">
+          <mat-icon>calendar_today</mat-icon>
+          <span>{{ currentImage().date | date : 'dd.MM.yyyy HH:mm' }}</span>
+        </div>
+        } @if (currentImage().camera) {
+        <div class="meta-badge">
+          <mat-icon>photo_camera</mat-icon>
+          <span>{{ currentImage().camera }}</span>
+        </div>
+        } @if (currentImage().city) {
+        <div class="meta-badge">
+          <mat-icon>location_on</mat-icon>
+          <span
+            >{{ currentImage().city }} @if(currentImage().country){,
+            {{ currentImage().country }}}</span
+          >
+        </div>
+        }
+      </div>
+
+      <div class="exif-row">
+        @if (currentImage().iso) {
+        <span class="exif-tag">ISO {{ currentImage().iso }}</span>
+        } @if (currentImage().aperture) {
+        <span class="exif-tag">ƒ/{{ currentImage().aperture }}</span>
+        } @if (currentImage().exposure_time) {
+        <span class="exif-tag">{{ currentImage().exposure_time }}s</span>
+        }
+      </div>
+    </div>
+
+    <span class="image-counter"> {{ currentIndex() + 1 }} / {{ data.images.length }} </span>
+  </div>
 </div>

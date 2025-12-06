@@ -1,112 +1,52 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, interval } from 'rxjs'; // Für Async-Simulation
-import { LocationNode } from './navigation.model';
-import { map, take, finalize } from 'rxjs/operators';
-
-export interface GalleryItem {
-  name: string;
-  type: 'folder' | 'image';
-  path: string; // Der volle Pfad für Links
-  url?: string; // Nur für Bilder: Die echte URL zum Anzeigen
-}
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
+// Wichtig: Import aus dem Model, NICHT lokal definiert
+import { GalleryItem } from '../models/photo.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GalleryService {
-  // Mock-Funktion: Gibt die Ordnerstruktur zurück
-  getFolderStructure(): Observable<LocationNode[]> {
-    const DATA: LocationNode[] = [
-      {
-        name: 'Africa',
-        path: 'Africa',
-        children: [
-          {
-            name: 'Namibia',
-            path: 'Africa/Namibia',
-            children: [
-              {
-                name: 'Erongo',
-                path: 'Africa/Namibia/Erongo',
-                children: [{ name: 'Swakopmund', path: 'Africa/Namibia/Erongo/Swakopmund' }],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: 'Europe',
-        path: 'Europe',
-        children: [
-          {
-            name: 'Germany',
-            path: 'Europe/Germany',
-            children: [
-              { name: 'Bavaria', path: 'Europe/Germany/Bavaria' }, // etc.
-            ],
-          },
-        ],
-      },
-    ];
-    return of(DATA); // Gibt ein Observable zurück
+  private http = inject(HttpClient);
+  private apiUrl = environment.apiUrl;
+  private webUrl = environment.webUrl;
+
+  // --- DIESE METHODE FEHLTE ---
+  getSubFolders(path: string): Observable<GalleryItem[]> {
+    // Ruft das Backend mit dem neuen Flag auf
+    const url = `${this.apiUrl}/api/gallery?path=${encodeURIComponent(path)}&folders_only=true`;
+
+    return this.http.get<any[]>(url).pipe(map((items) => items.map((item) => item as GalleryItem)));
   }
+  // -----------------------------
 
-  /**
-   * Simuliert das Laden von Inhalten eines Ordners.
-   * Später ersetzt du das durch this.http.get<GalleryItem[]>('/api/gallery?path=' + path)
-   */
-  getDirectoryContent(path: string): Observable<GalleryItem[]> {
-    console.log('Lade Inhalt für:', path);
+  getDirectoryContent(path: string = '', page: number = 1): Observable<GalleryItem[]> {
+    const url = `${this.apiUrl}/api/gallery?path=${encodeURIComponent(path)}&page=${page}`;
 
-    // MOCK DATEN - Nur zum Testen der Navigation
-    let items: GalleryItem[] = [];
-
-    if (!path || path === '/') {
-      // Root Ebene: Zeige Kontinente als Ordner
-      items = [
-        { name: 'Africa', type: 'folder', path: 'Africa' },
-        { name: 'Europe', type: 'folder', path: 'Europe' },
-      ];
-    } else if (path === 'Africa') {
-      items = [{ name: 'Namibia', type: 'folder', path: 'Africa/Namibia' }];
-    } else if (path.includes('Namibia')) {
-      // Wir sind tief drin, zeige ein paar Fake-Bilder
-      items = [
-        {
-          name: 'Elefant.jpg',
-          type: 'image',
-          path: path,
-          url: 'https://via.placeholder.com/300?text=Elefant',
-        },
-        {
-          name: 'Wueste.jpg',
-          type: 'image',
-          path: path,
-          url: 'https://via.placeholder.com/300?text=Dune',
-        },
-      ];
-    } else {
-      // Fallback
-      items = [{ name: 'Leerer Ordner', type: 'folder', path: 'nichts' }];
-    }
-
-    // Kleines Delay simulieren (wie echte Netzwerk-Request)
-    return of(items);
-  }
-
-  /**
-   * Simuliert einen Datei-Upload mit Fortschritts-Events.
-   * Gibt Zahlen von 0 bis 100 zurück.
-   */
-  uploadFile(file: File): Observable<number> {
-    // Mock: Wir nutzen ein Interval, um den Upload zu faken
-    // In der Realität: HttpClient mit reportProgress: true
-    const speed = 50; // ms pro Tick
-    const steps = 20; // 20 * 5 = 100%
-
-    return interval(speed).pipe(
-      take(steps + 1),
-      map((i) => Math.round((i / steps) * 100))
+    return this.http.get<any[]>(url).pipe(
+      map((items) => {
+        return items.map((item) => {
+          // URLs für Bilder absolut machen
+          if (item.type === 'image' && item.url) {
+            item.url = `${this.webUrl}${item.url}`;
+          }
+          return item as GalleryItem;
+        });
+      })
     );
+  }
+
+  uploadFile(file: File, path: string): Observable<HttpEvent<any>> {
+    const formData = new FormData();
+    formData.append('photo', file);
+    formData.append('path', path);
+
+    const req = new HttpRequest('POST', `${this.apiUrl}/upload`, formData, {
+      reportProgress: true,
+    });
+
+    return this.http.request(req);
   }
 }

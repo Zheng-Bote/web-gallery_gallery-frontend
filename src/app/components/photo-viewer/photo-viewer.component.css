@@ -2,60 +2,66 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: black;
+
+  /* Hintergrund des Modals (nicht der Seite dahinter) */
+  background-color: #121212; /* Sehr dunkles Grau, wirkt edler als #000 */
+  color: white;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  overflow: hidden; /* Wichtig für border-radius des Eltern-Elements */
 }
 
 .image-wrapper {
-  flex: 1; /* Nimmt den meisten Platz ein */
+  flex: 1;
   width: 100%;
+  height: 100%; /* Füllt den verfügbaren Platz */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 0; /* Kein Padding, Bild darf an den Rand */
+  overflow: hidden;
+  position: relative;
 }
 
 .main-image {
   max-width: 100%;
-  max-height: 80vh; /* Platz für Footer lassen */
-  object-fit: contain; /* Bild wird nicht verzerrt */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  max-height: 100%;
+  /* Contain: Bild wird komplett angezeigt, Ränder entstehen ggf. */
+  object-fit: contain;
+
+  /* Optional: Weicher Übergang beim Bildwechsel */
+  transition: opacity 0.2s ease-in-out;
 }
 
-.viewer-footer {
-  height: 50px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  font-family: Roboto, sans-serif;
-}
-
-/* --- Buttons --- */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: white;
-  background: rgba(0, 0, 0, 0.3);
-}
-
+/* --- Navigation Buttons (Schweben über dem Bild) --- */
 .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
+  /* Glassmorphism für die Buttons */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
   color: white;
-  background: rgba(0, 0, 0, 0.3);
-  width: 48px;
-  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  width: 56px;
+  height: 56px;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1); /* Leichter Zoom Effekt */
+}
+
+.prev {
+  left: 20px;
+}
+.next {
+  right: 20px;
 }
 
 .nav-btn mat-icon {
@@ -65,14 +71,103 @@
   line-height: 32px;
 }
 
-.prev {
-  left: 10px;
-}
-.next {
-  right: 10px;
+/* --- Close Button (Oben Rechts, schwebend) --- */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 50%;
 }
 
-.nav-btn:hover,
 .close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 0, 0, 0.7); /* Rot beim Hovern zum Schließen */
+}
+
+/* --- Footer / Metadaten (Unten, über dem Bild liegend oder darunter) --- */
+.viewer-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  /* Verlauf von transparent zu fast schwarz für Lesbarkeit */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    transparent 100%
+  );
+
+  padding: 50px 24px 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.footer-info {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 80%; /* Platz für den Counter rechts lassen */
+}
+
+.image-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Zeile für Ort, Datum, Kamera */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+}
+
+.meta-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta-badge mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+/* Zeile für technische EXIF Daten (ISO, f/, sec) */
+.exif-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.exif-tag {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace; /* Monospace für Zahlen sieht technisch cool aus */
+  font-size: 12px;
+  color: #e0e0e0;
+}
+
+.image-counter {
+  font-size: 14px;
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 4px;
 }

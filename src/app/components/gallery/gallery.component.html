@@ -6,14 +6,18 @@
   }
 
   <div class="gallery-actions">
-    <h2 class="current-folder-title">
-      {{ getCurrentFolderName() }}
-    </h2>
+    <div class="header-left">
+      @if (currentPath() !== '') {
+      <button mat-icon-button (click)="navigateUp()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      }
+      <h2 class="current-folder-title">{{ folderTitle() }}</h2>
+    </div>
 
-    <button mat-stroked-button (click)="copyLink()">
-      <mat-icon>share</mat-icon>
-      Link teilen
-    </button>
+    <div class="action-buttons">
+      <button mat-stroked-button (click)="copyLink()"><mat-icon>link</mat-icon></button>
+    </div>
   </div>
 
   <div class="gallery-grid">
@@ -30,7 +34,10 @@
       </div>
     </div>
     } } @empty { @if (!isLoading()) {
-    <p class="empty-state">Dieser Ordner ist leer.</p>
+    <div class="empty-state">
+      <mat-icon>folder_open</mat-icon>
+      <p>Dieser Ordner ist leer.</p>
+    </div>
     } }
   </div>
 </div>

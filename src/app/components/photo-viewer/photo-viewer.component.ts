@@ -4,8 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-// Importiere dein GalleryItem Interface
-import { GalleryItem } from '../../service/gallery.service';
+import { GalleryItem } from '../../models/photo.model';
 
 export interface PhotoViewerData {
   images: GalleryItem[];

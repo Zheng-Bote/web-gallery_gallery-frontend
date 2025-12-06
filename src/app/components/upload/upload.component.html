@@ -1,4 +1,19 @@
 <div class="upload-container">
+  <div class="settings-row">
+    <mat-form-field appearance="outline" class="path-input">
+      <mat-label>Zielordner (optional)</mat-label>
+      <input
+        matInput
+        [ngModel]="targetPath()"
+        (ngModelChange)="targetPath.set($event)"
+        placeholder="z.B. 2025/Urlaub"
+        [disabled]="isUploading()"
+      />
+      <mat-icon matSuffix>folder_open</mat-icon>
+      <mat-hint>Unterordner werden automatisch erstellt</mat-hint>
+    </mat-form-field>
+  </div>
+
   <div
     class="drop-zone"
     [class.drag-over]="isDragOver()"
@@ -8,9 +23,16 @@
   >
     <mat-icon class="upload-icon">cloud_upload</mat-icon>
     <h3>Bilder hier ablegen</h3>
-    <p>oder</p>
+    <p class="secondary-text">oder klicken zum Auswählen</p>
 
-    <button mat-flat-button color="primary" (click)="fileInput.click()">Dateien auswählen</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="fileInput.click()"
+      [disabled]="isUploading()"
+    >
+      Dateien durchsuchen
+    </button>
 
     <input
       #fileInput
@@ -18,35 +40,52 @@
       multiple
       (change)="onFileSelected($event)"
       style="display: none"
+      accept="image/*"
     />
   </div>
 
   @if (isUploading()) {
   <div class="progress-section">
-    <p>Lade hoch... {{ progress() | number : '1.0-0' }}%</p>
+    <div class="progress-info">
+      <span>Lade Datei {{ currentFileIndex() }} von {{ files().length }}</span>
+      <span>{{ progress() | number : '1.0-0' }}%</span>
+    </div>
     <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
   </div>
   } @if (files().length > 0) {
-  <div class="file-list">
-    <h3>Ausgewählte Dateien ({{ files().length }})</h3>
+  <div class="file-list-container">
+    <h3>Warteschlange ({{ files().length }})</h3>
 
     <mat-list>
       @for (file of files(); track file.name; let i = $index) {
       <mat-list-item>
-        <mat-icon matListItemIcon>image</mat-icon>
-        <span matListItemTitle>{{ file.name }}</span>
-        <span matListItemLine>{{ file.size / 1024 / 1024 | number : '1.2-2' }} MB</span>
+        <mat-icon matListItemIcon>description</mat-icon>
+        <div matListItemTitle>{{ file.name }}</div>
+        <div matListItemLine>{{ file.size / 1024 / 1024 | number : '1.2-2' }} MB</div>
 
-        <button mat-icon-button (click)="removeFile(i)" [disabled]="isUploading()">
-          <mat-icon>delete</mat-icon>
+        <button
+          mat-icon-button
+          matListItemMeta
+          (click)="removeFile(i)"
+          [disabled]="isUploading()"
+          color="warn"
+        >
+          <mat-icon>close</mat-icon>
         </button>
       </mat-list-item>
       }
     </mat-list>
 
     <div class="actions">
-      <button mat-raised-button color="primary" (click)="uploadAll()" [disabled]="isUploading()">
-        <mat-icon>upload</mat-icon> Jetzt hochladen
+      <button
+        mat-raised-button
+        color="primary"
+        class="upload-btn"
+        (click)="uploadAll()"
+        [disabled]="isUploading()"
+      >
+        <mat-icon>upload</mat-icon>
+        {{ isUploading() ? 'Lädt hoch...' : 'Alle hochladen' }}
       </button>
     </div>
   </div>

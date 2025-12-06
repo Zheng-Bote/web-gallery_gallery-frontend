@@ -1,47 +1,97 @@
 .upload-container {
   padding: 24px;
-  max-width: 800px;
+  max-width: 600px; /* Etwas schmaler für besseren Fokus */
   margin: 0 auto;
 }
 
+/* Pfad Input */
+.settings-row {
+  margin-bottom: 24px;
+}
+
+.path-input {
+  width: 100%;
+}
+
 .drop-zone {
-  border: 3px dashed var(--mat-sys-outline-variant);
-  border-radius: 16px;
-  padding: 48px;
+  border: 2px dashed var(--mat-sys-outline-variant); /* Dünnerer Rand, eleganter */
+  border-radius: 12px;
+  padding: 40px;
   text-align: center;
   background-color: var(--mat-sys-surface-container-low);
   transition: all 0.2s ease;
-  color: var(--mat-sys-on-surface-variant);
+  color: var(--mat-sys-on-surface);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  cursor: pointer;
 }
 
-/* Wenn eine Datei drüber gehalten wird */
+.drop-zone:hover {
+  background-color: var(--mat-sys-surface-container);
+  border-color: var(--mat-sys-primary);
+}
+
 .drop-zone.drag-over {
   border-color: var(--mat-sys-primary);
-  background-color: var(--mat-sys-surface-container-highest);
-  transform: scale(1.01);
+  background-color: var(--mat-sys-primary-container); /* Deutlicheres Feedback */
+  transform: scale(1.02);
 }
 
 .upload-icon {
-  font-size: 64px;
-  width: 64px;
-  height: 64px;
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
   color: var(--mat-sys-primary);
+  margin-bottom: 8px;
 }
 
-.file-list {
+.secondary-text {
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Liste & Aktionen */
+.file-list-container {
   margin-top: 32px;
+  animation: fadeIn 0.3s ease;
 }
 
 .progress-section {
   margin-top: 24px;
+  padding: 16px;
+  background: var(--mat-sys-surface-container-low);
+  border-radius: 8px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .actions {
   margin-top: 24px;
   display: flex;
   justify-content: flex-end;
+}
+
+.upload-btn {
+  padding: 0 24px;
+  height: 48px; /* Größerer Button */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

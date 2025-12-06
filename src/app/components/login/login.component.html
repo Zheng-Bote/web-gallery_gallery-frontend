@@ -11,6 +11,9 @@
           <mat-label>Benutzername</mat-label>
           <input matInput formControlName="username" placeholder="admin" />
           <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            Benutzername fehlt
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -19,20 +22,33 @@
             matInput
             [type]="hidePassword() ? 'password' : 'text'"
             formControlName="password"
-            placeholder="1234"
           />
           <button
             mat-icon-button
             matSuffix
             (click)="hidePassword.set(!hidePassword())"
             type="button"
+            [attr.aria-label]="'Passwort verbergen'"
           >
             <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Passwort fehlt
+          </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
-          Einloggen
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading()"
+          class="submit-btn"
+        >
+          @if (isLoading()) {
+          <mat-spinner diameter="20" color="accent"></mat-spinner>
+          } @else {
+          <span>Einloggen</span>
+          }
         </button>
       </form>
     </mat-card-content>

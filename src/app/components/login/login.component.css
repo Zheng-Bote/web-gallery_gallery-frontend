@@ -30,3 +30,15 @@ mat-card-header {
   margin: 0;
   text-align: center;
 }
+
+.submit-btn {
+  height: 48px; /* Feste Höhe verhindert Springen beim Laden */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Spinner im Button muss weiß/sichtbar sein */
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: white;
+}
