@@ -168,7 +168,22 @@ bla bla ... with a little help from my friends
 ├── package-lock.json
 ├── package.json
 ├── public
-│   └── favicon.ico
+│   ├── favicon.ico
+│   └── i18n
+│       ├── about
+│       │   ├── de.json
+│       │   └── en.json
+│       ├── de.json
+│       ├── en.json
+│       ├── home
+│       │   ├── de.json
+│       │   └── en.json
+│       ├── impressum
+│       │   ├── de.json
+│       │   └── en.json
+│       └── login
+│           ├── de.json
+│           └── en.json
 ├── src
 │   ├── app
 │   │   ├── app.config.ts
@@ -178,16 +193,41 @@ bla bla ... with a little help from my friends
 │   │   ├── app.spec.ts
 │   │   ├── app.ts
 │   │   ├── components
+│   │   │   ├── about
+│   │   │   │   ├── about.component.css
+│   │   │   │   ├── about.component.html
+│   │   │   │   ├── about.component.spec.ts
+│   │   │   │   └── about.component.ts
 │   │   │   ├── breadcrumbs
 │   │   │   │   ├── breadcrumbs.component.css
 │   │   │   │   ├── breadcrumbs.component.html
 │   │   │   │   ├── breadcrumbs.component.spec.ts
 │   │   │   │   └── breadcrumbs.component.ts
+│   │   │   ├── footer
+│   │   │   │   ├── footer.component.css
+│   │   │   │   ├── footer.component.html
+│   │   │   │   ├── footer.component.spec.ts
+│   │   │   │   └── footer.component.ts
 │   │   │   ├── gallery
 │   │   │   │   ├── gallery.component.css
 │   │   │   │   ├── gallery.component.html
 │   │   │   │   ├── gallery.component.spec.ts
 │   │   │   │   └── gallery.component.ts
+│   │   │   ├── header
+│   │   │   │   ├── header.component.css
+│   │   │   │   ├── header.component.html
+│   │   │   │   ├── header.component.spec.ts
+│   │   │   │   └── header.component.ts
+│   │   │   ├── home
+│   │   │   │   ├── home.component.css
+│   │   │   │   ├── home.component.html
+│   │   │   │   ├── home.component.spec.ts
+│   │   │   │   └── home.component.ts
+│   │   │   ├── impressum
+│   │   │   │   ├── impressum.component.css
+│   │   │   │   ├── impressum.component.html
+│   │   │   │   ├── impressum.component.spec.ts
+│   │   │   │   └── impressum.component.ts
 │   │   │   ├── login
 │   │   │   │   ├── login.component.css
 │   │   │   │   ├── login.component.html
@@ -212,15 +252,16 @@ bla bla ... with a little help from my friends
 │   │   ├── models
 │   │   │   ├── auth.model.ts
 │   │   │   └── photo.model.ts
-│   │   └── service
-│   │       ├── auth.guard.ts
-│   │       ├── auth.service.spec.ts
-│   │       ├── auth.service.ts
-│   │       ├── gallery.service.ts
-│   │       ├── layout.service.ts
-│   │       ├── navigation.model.ts
-│   │       ├── notification.service.ts
-│   │       └── theme.service.ts
+│   │   ├── service
+│   │   │   ├── auth.guard.ts
+│   │   │   ├── auth.service.spec.ts
+│   │   │   ├── auth.service.ts
+│   │   │   ├── gallery.service.ts
+│   │   │   ├── layout.service.ts
+│   │   │   ├── navigation.model.ts
+│   │   │   ├── notification.service.ts
+│   │   │   └── theme.service.ts
+│   │   └── transloco-loader.ts
 │   ├── custom-theme.scss
 │   ├── environments
 │   │   ├── environment.development.ts
@@ -228,12 +269,13 @@ bla bla ... with a little help from my friends
 │   ├── index.html
 │   ├── main.ts
 │   └── styles.css
+├── transloco.config.ts
 ├── tree.bak
 ├── tsconfig.app.json
 ├── tsconfig.json
 └── tsconfig.spec.json
 
-21 directories, 72 files
+31 directories, 104 files
 ```
 <!-- readme-tree end -->
 
