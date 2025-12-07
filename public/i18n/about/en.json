@@ -1,0 +1,6 @@
+{
+  "title": "About Project",
+  "desc": "CrowGallery is a high-performance photo management tool built with C++ (Crow, Qt) backend and Angular v21 frontend.",
+  "version": "Version",
+  "author": "Developed by"
+}

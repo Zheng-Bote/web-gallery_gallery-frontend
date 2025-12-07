@@ -1,0 +1,12 @@
+{
+  "title": "Willkommen in deiner Galerie",
+  "subtitle": "Sicher. Privat. Schnell.",
+  "desc": "Verwalte deine Fotos mit modernster Technologie. C++ Backend Performance trifft auf Angular Material Design.",
+  "features": {
+    "secure": "Sicherer Login",
+    "upload": "Drag & Drop Upload",
+    "meta": "Automatische EXIF-Daten"
+  },
+  "btn_gallery": "Zur Galerie",
+  "btn_login": "Anmelden"
+}

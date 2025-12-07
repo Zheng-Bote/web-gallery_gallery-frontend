@@ -1,0 +1,49 @@
+<mat-toolbar color="primary" class="main-header">
+  <a routerLink="/home" class="logo">
+    <mat-icon>photo_library</mat-icon>
+    <span>CrowGallery</span>
+  </a>
+
+  <span class="spacer"> </span>
+  <button matButton routerLink="/home" routerLinkActive="active-link">
+    <mat-icon matListItemIcon>home</mat-icon><span matListItemTitle>Main</span>
+  </button>
+  <button matButton routerLink="/gallery" routerLinkActive="active-link">
+    <mat-icon matListItemIcon>photo_library</mat-icon><span matListItemTitle>Gallery</span>
+  </button>
+
+  @if (auth.accessToken()) {
+  <button matButton routerLink="/upload" routerLinkActive="active-link">
+    <mat-icon matListItemIcon>cloud_upload</mat-icon> <span matListItemTitle>Upload</span>
+  </button>
+  }
+
+  <button mat-icon-button (click)="themeService.toggle()">
+    <mat-icon>
+      {{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}
+    </mat-icon>
+  </button>
+
+  <div class="lang-switch">
+    <span [class.active-lang]="!isGerman()">EN</span>
+
+    <mat-slide-toggle
+      class="small-toggle"
+      [checked]="isGerman()"
+      (change)="onLanguageChange($event)"
+      color="accent"
+    >
+    </mat-slide-toggle>
+
+    <span [class.active-lang]="isGerman()">DE</span>
+  </div>
+
+  @if (auth.isLoggedIn()) {
+  <span class="user-info">User: {{ auth.username() }}</span>
+  <button mat-icon-button (click)="auth.logout()" title="Logout">
+    <mat-icon>logout</mat-icon>
+  </button>
+  } @else {
+  <button mat-icon-button routerLink="/login"><mat-icon title="Login">login</mat-icon></button>
+  }
+</mat-toolbar>

@@ -1,0 +1,83 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  width: 100%;
+  background: linear-gradient(135deg, var(--mat-sys-primary) 0%, var(--mat-sys-tertiary) 100%);
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 0 0 50% 50% / 20px; /* Leichte Kurve unten */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0 0 16px 0;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.cta-buttons a {
+  padding: 24px 32px; /* Große Buttons */
+  font-size: 1.1rem;
+}
+
+/* --- FEATURES --- */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+.feature-card {
+  width: 250px;
+  padding: 32px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: var(--mat-sys-primary);
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  margin: 0;
+  font-weight: 400;
+  color: var(--mat-sys-on-surface);
+}

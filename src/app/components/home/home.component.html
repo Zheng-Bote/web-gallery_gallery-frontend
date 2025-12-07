@@ -1,0 +1,39 @@
+<div class="home-container" *transloco="let t; read: 'home'">
+  <header class="hero">
+    <div class="hero-content">
+      <mat-icon class="hero-icon">photo_library</mat-icon>
+      <h1>{{ t('title') }}</h1>
+      <p class="subtitle">{{ t('subtitle') }}</p>
+      <p class="description">{{ t('desc') }}</p>
+
+      <div class="cta-buttons">
+        @if (auth.isLoggedIn()) {
+        <a mat-raised-button color="primary" routerLink="/gallery">
+          <mat-icon>collections</mat-icon> {{ t('btn_gallery') }}
+        </a>
+        } @else {
+        <a mat-raised-button color="accent" routerLink="/login">
+          <mat-icon>login</mat-icon> {{ t('btn_login') }}
+        </a>
+        }
+      </div>
+    </div>
+  </header>
+
+  <section class="features">
+    <mat-card class="feature-card">
+      <mat-icon>security</mat-icon>
+      <h3>{{ t('features.secure') }}</h3>
+    </mat-card>
+
+    <mat-card class="feature-card">
+      <mat-icon>cloud_upload</mat-icon>
+      <h3>{{ t('features.upload') }}</h3>
+    </mat-card>
+
+    <mat-card class="feature-card">
+      <mat-icon>info</mat-icon>
+      <h3>{{ t('features.meta') }}</h3>
+    </mat-card>
+  </section>
+</div>

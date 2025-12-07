@@ -19,6 +19,7 @@ server {
     # --------------------------------------------------------
     location /media/ {
         # 'alias' mappt die URL /media/ auf deinen echten Ordner
+        # ACHTUNG: Pfad muss mit / enden
         alias /home/dein-user/Photos/; # PFAD ANPASSEN (Wo deine Bilder liegen)
 
         # Performance Tuning

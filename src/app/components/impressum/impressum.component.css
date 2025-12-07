@@ -1,0 +1,29 @@
+.page-container {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.content-card {
+  max-width: 800px;
+  width: 100%;
+  padding: 24px;
+}
+
+/* Typografie für Rechtstexte */
+.legal-text {
+  margin-top: 24px;
+  line-height: 1.6;
+  color: var(--mat-sys-on-surface);
+}
+
+.legal-text h3 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.legal-text p {
+  margin-bottom: 16px;
+}

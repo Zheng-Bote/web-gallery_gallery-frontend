@@ -1,23 +1,23 @@
-<div class="login-container">
+<div class="login-container" *transloco="let t; read: 'login'">
   <mat-card class="login-card">
     <mat-card-header>
-      <mat-card-title>Willkommen zurück</mat-card-title>
-      <mat-card-subtitle>Bitte logge dich ein</mat-card-subtitle>
+      <mat-card-title>{{ t('title') }}</mat-card-title>
+      <mat-card-subtitle>{{ t('subtitle') }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <mat-form-field appearance="outline">
-          <mat-label>Benutzername</mat-label>
+          <mat-label>{{ t('username') }}</mat-label>
           <input matInput formControlName="username" placeholder="admin" />
           <mat-icon matSuffix>person</mat-icon>
           <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
-            Benutzername fehlt
+            {{ t('username') }} fehlt
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Passwort</mat-label>
+          <mat-label>{{ t('password') }}</mat-label>
           <input
             matInput
             [type]="hidePassword() ? 'password' : 'text'"
@@ -33,7 +33,7 @@
             <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
           <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-            Passwort fehlt
+            {{ t('password') }} fehlt
           </mat-error>
         </mat-form-field>
 
@@ -47,7 +47,7 @@
           @if (isLoading()) {
           <mat-spinner diameter="20" color="accent"></mat-spinner>
           } @else {
-          <span>Einloggen</span>
+          <span>{{ t('btn_login') }}</span>
           }
         </button>
       </form>

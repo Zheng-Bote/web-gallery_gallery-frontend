@@ -1,0 +1,79 @@
+.main-header {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  position: relative;
+}
+
+.logo {
+  /* Layout: Icon und Text nebeneinander */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  /* WICHTIG: Farben überschreiben! */
+  color: grey; /* Weiß statt Browser-Standard-Blau */
+  text-decoration: none; /* Keine Unterstreichung */
+
+  /* UX: Zeige, dass es klickbar ist */
+  cursor: pointer;
+
+  /* Sicherheitshalber, damit er nicht kollabiert */
+  height: 100%;
+}
+
+/* Optional: Hover-Effekt */
+.logo:hover {
+  opacity: 0.9;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-links a {
+  /*color: rgba(255, 255, 255, 0.9);*/
+  color: grey;
+}
+
+.nav-links a.active-link {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+/* --- SPRACH UMSCHALTER --- */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Enger zusammen für Kompaktheit */
+  margin-right: 16px;
+  background: rgba(255, 255, 255, 0.1); /* Leichter Hintergrund container */
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.lang-switch span {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.lang-switch span.active-lang {
+  color: grey;
+  font-weight: 700;
+}
+
+/* --- DER TRICK: Toggle verkleinern --- */
+.small-toggle {
+  transform: scale(0.7); /* Auf 70% der Größe schrumpfen */
+  /* Korrektur der Margins, da Scale den Platz nicht automatisch freigibt */
+  margin: 0 -4px;
+}
+
+/* Farbe des Toggles anpassen wenn er im Header ist */
+::ng-deep .small-toggle .mdc-switch__track {
+  opacity: 0.5 !important;
+}
+
+.user-info {
+  font-size: 1rem;
+}

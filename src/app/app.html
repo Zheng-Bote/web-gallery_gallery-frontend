@@ -1,38 +1,4 @@
-<mat-toolbar color="primary" class="header">
-  <button mat-icon-button (click)="opened = !opened">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Crow Gallery</span>
-
-  <span class="spacer"> </span>
-  <button matButton routerLink="/" routerLinkActive="active-link">
-    <mat-icon matListItemIcon>home</mat-icon><span matListItemTitle>Main</span>
-  </button>
-  <button matButton routerLink="/gallery" routerLinkActive="active-link">
-    <mat-icon matListItemIcon>photo_library</mat-icon><span matListItemTitle>Gallery</span>
-  </button>
-
-  @if (auth.accessToken()) {
-  <button matButton routerLink="/upload" routerLinkActive="active-link">
-    <mat-icon matListItemIcon>cloud_upload</mat-icon> <span matListItemTitle>Upload</span>
-  </button>
-
-  <span class="user-info">User: {{ auth.username() }}</span>
-  <button mat-icon-button (click)="auth.logout()">
-    <mat-icon>logout</mat-icon>
-  </button>
-  } @else {
-  <button mat-icon-button routerLink="/login"><mat-icon>login</mat-icon></button>
-  }
-
-  <span class="spacer"></span>
-
-  <button mat-icon-button (click)="themeService.toggle()">
-    <mat-icon>
-      {{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}
-    </mat-icon>
-  </button>
-</mat-toolbar>
+<app-header></app-header>
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav mode="side" [(opened)]="opened" class="sidenav">
@@ -53,8 +19,6 @@
       <router-outlet></router-outlet>
     </div>
 
-    <footer class="footer">
-      <p>&copy; 2025 Crow Project</p>
-    </footer>
+    <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

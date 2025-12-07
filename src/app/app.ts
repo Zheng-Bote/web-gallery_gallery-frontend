@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 // Material Imports
@@ -15,7 +15,8 @@ import { LayoutService } from './service/layout.service';
 import { NavigationTreeComponent } from './components/navigation-tree/navigation-tree.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
-import { ThemeService } from './service/theme.service';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -23,8 +24,6 @@ import { ThemeService } from './service/theme.service';
   imports: [
     CommonModule,
     RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
     MatToolbarModule,
     MatSidenavModule,
     //  MatListModule,
@@ -32,6 +31,8 @@ import { ThemeService } from './service/theme.service';
     MatButtonModule,
     NavigationTreeComponent,
     BreadcrumbsComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
@@ -39,7 +40,6 @@ import { ThemeService } from './service/theme.service';
 export class App {
   auth = inject(AuthService);
   layout = inject(LayoutService);
-  themeService = inject(ThemeService);
 
   // Status des Menüs (für Mobile Toggle)
   opened = true;

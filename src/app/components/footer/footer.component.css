@@ -1,0 +1,48 @@
+.footer-toolbar {
+  /* Kleiner als der Header, wirkt eleganter */
+  height: 40px;
+  min-height: 40px;
+  font-size: 12px;
+  background-color: var(--mat-sys-surface-container); /* Dezentes Grau */
+  color: var(--mat-sys-on-surface-variant);
+  border-top: 1px solid var(--mat-sys-outline-variant);
+
+  /* Flexbox Layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+
+/* Die drei Sektionen */
+.footer-section {
+  flex: 1; /* Jeder nimmt gleich viel Platz ein */
+  display: flex;
+}
+
+/* Ausrichtung innerhalb der Sektionen */
+.left {
+  justify-content: flex-start;
+}
+
+.center {
+  justify-content: center;
+  opacity: 0.8; /* Copyright etwas dezenter */
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+/* Links Styling */
+.footer-link {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--mat-sys-primary);
+  text-decoration: underline;
+}

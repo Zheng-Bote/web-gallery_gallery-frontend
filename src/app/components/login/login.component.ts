@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; // Wichtig für Navigation
 import { CommonModule } from '@angular/common'; // Für *ngIf und @if
+import { TranslocoModule, provideTranslocoScope } from '@jsverse/transloco';
 
 // Material Modules
 import { MatCardModule } from '@angular/material/card';
@@ -27,6 +28,12 @@ import { NotificationService } from '../../service/notification.service';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    TranslocoModule,
+  ],
+  providers: [
+    // HIER passiert die Magie: Wir definieren den Scope 'login'.
+    // Transloco sucht nun automatisch nach assets/i18n/login/en.json
+    provideTranslocoScope({ scope: 'login', alias: 'login' }),
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',

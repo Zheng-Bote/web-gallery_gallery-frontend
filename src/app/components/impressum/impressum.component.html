@@ -1,0 +1,52 @@
+<div class="page-container" *transloco="let t; read: 'impressum'">
+  <mat-card class="content-card">
+    <mat-card-header>
+      <mat-card-title>{{ t('title') }}</mat-card-title>
+      <mat-card-subtitle>{{ t('subtitle') }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="legal-text">
+      @if (isGerman()) {
+      <div class="static-content de">
+        <h3>Angaben gemäß § 5 TMG</h3>
+        <p>
+          ZHENG Robert<br />
+          Musterstraße 1<br />
+          12345 Musterstadt
+        </p>
+
+        <h3>Kontakt</h3>
+        <p>
+          Telefon: +49 (0) 123 44 55 66<br />
+          E-Mail: info@hase-zheng.net
+        </p>
+
+        <h3>Haftungsausschluss (Disclaimer)</h3>
+        <p>
+          <strong>Haftung für Inhalte</strong><br />
+          Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte...
+        </p>
+      </div>
+      } @else {
+      <div class="static-content en">
+        <h3>Information according to § 5 TMG</h3>
+        <p>
+          ZHENG Robert<br />
+          Sample Street 1<br />
+          12345 Sample City<br />
+          Germany
+        </p>
+
+        <h3>Contact</h3>
+        <p>
+          Phone: +49 (0) 123 44 55 66<br />
+          Email: info@hase-zheng.net
+        </p>
+
+        <h3>Liability for Contents</h3>
+        <p>As service providers, we are liable for own contents of these websites...</p>
+      </div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

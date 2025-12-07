@@ -51,23 +51,17 @@
   text-decoration: underline;
 }
 
-.footer {
-  background-color: var(--mat-sys-surface-container);
-
-  color: var(--mat-sys-on-surface-variant);
-
-  border-top: 1px solid var(--mat-sys-outline-variant);
-
-  padding: 16px;
-  text-align: center;
-  margin-top: auto; /* Drückt Footer nach unten */
-}
-
-.user-info {
-  font-size: 1rem;
-}
-
 .nav-caption {
   margin-left: 8px;
   /* Optional: Auf Mobile ausblenden */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Volle Bildschirmhöhe */
+}
+
+.content-wrapper {
+  flex: 1; /* Drückt den Footer nach unten */
 }
