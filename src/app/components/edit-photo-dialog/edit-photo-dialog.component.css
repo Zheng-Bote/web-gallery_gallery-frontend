@@ -1,0 +1,11 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 400px; /* Damit der Dialog nicht zu schmal ist */
+  padding-top: 10px;
+}
+
+textarea {
+  resize: vertical;
+}

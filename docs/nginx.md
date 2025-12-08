@@ -9,6 +9,15 @@ server {
     root /var/www/crow-gallery/browser; # PFAD ANPASSEN (Wo dein 'ng build' Output liegt)
     index index.html;
 
+    # --- KOMPRESSION AKTIVIEREN ---
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024; # Erst ab 1KB komprimieren (darunter lohnt CPU-Aufwand nicht)
+
+    # Welche Dateitypen sollen komprimiert werden?
+    # WICHTIG: application/json für deine API
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
     location / {
         # Wichtig für Angular Routing: Wenn Datei nicht existiert -> index.html
         try_files $uri $uri/ /index.html;

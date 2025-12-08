@@ -1,25 +1,27 @@
+/* --- HAUPT CONTAINER --- */
 .viewer-container {
-  position: relative;
+  position: relative; /* WICHTIG: Bezugspunkt für alle absoluten Kinder */
   width: 100%;
   height: 100%;
 
-  /* Hintergrund des Modals (nicht der Seite dahinter) */
-  background-color: #121212; /* Sehr dunkles Grau, wirkt edler als #000 */
+  /* Hintergrund des Modals */
+  background-color: #121212;
   color: white;
 
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Wichtig für border-radius des Eltern-Elements */
+  overflow: hidden;
 }
 
+/* --- BILD BEREICH --- */
 .image-wrapper {
   flex: 1;
   width: 100%;
-  height: 100%; /* Füllt den verfügbaren Platz */
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0; /* Kein Padding, Bild darf an den Rand */
+  padding: 0;
   overflow: hidden;
   position: relative;
 }
@@ -27,20 +29,20 @@
 .main-image {
   max-width: 100%;
   max-height: 100%;
-  /* Contain: Bild wird komplett angezeigt, Ränder entstehen ggf. */
-  object-fit: contain;
-
-  /* Optional: Weicher Übergang beim Bildwechsel */
+  object-fit: contain; /* Bild wird nicht abgeschnitten */
   transition: opacity 0.2s ease-in-out;
 }
 
-/* --- Navigation Buttons (Schweben über dem Bild) --- */
+/* ---------------------------------------------------------
+   NAVIGATION (Pfeile Links/Rechts)
+--------------------------------------------------------- */
 .nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 10;
 
-  /* Glassmorphism für die Buttons */
+  /* Glassmorphism */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(4px);
   color: white;
@@ -48,13 +50,22 @@
 
   width: 56px;
   height: 56px;
-  z-index: 10;
-  transition: background 0.2s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .nav-btn:hover {
   background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-50%) scale(1.1); /* Leichter Zoom Effekt */
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .prev {
@@ -64,37 +75,85 @@
   right: 20px;
 }
 
-.nav-btn mat-icon {
-  font-size: 32px;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
+/* ---------------------------------------------------------
+   AKTIONEN OBEN LINKS (Edit & Delete)
+--------------------------------------------------------- */
+.actions-top-left {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 20;
+
+  display: flex;
+  gap: 12px; /* Abstand zwischen den Buttons */
 }
 
-/* --- Close Button (Oben Rechts, schwebend) --- */
+/* Basis-Style für Aktions-Buttons */
+.action-btn {
+  position: relative; /* WICHTIG: Nicht absolute, damit sie nebeneinander stehen */
+
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Spezifische Farben beim Hovern */
+.edit-btn:hover {
+  color: #40c4ff; /* Hellblau */
+}
+
+.delete-btn:hover {
+  background: rgba(255, 0, 0, 0.3); /* Rötlicher Hintergrund */
+  color: #ff5252; /* Rotes Icon */
+  border-color: #ff5252;
+}
+
+/* ---------------------------------------------------------
+   SCHLIESSEN BUTTON (Oben Rechts)
+--------------------------------------------------------- */
 .close-btn {
   position: absolute;
   top: 16px;
   right: 16px;
   z-index: 20;
 
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   color: white;
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
 }
 
 .close-btn:hover {
-  background: rgba(255, 0, 0, 0.7); /* Rot beim Hovern zum Schließen */
+  background: rgba(255, 0, 0, 0.7); /* Rot beim Schließen */
 }
 
-/* --- Footer / Metadaten (Unten, über dem Bild liegend oder darunter) --- */
+/* ---------------------------------------------------------
+   FOOTER (Metadaten unten)
+--------------------------------------------------------- */
 .viewer-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
 
-  /* Verlauf von transparent zu fast schwarz für Lesbarkeit */
+  /* Verlauf für Lesbarkeit */
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.95) 0%,
@@ -102,11 +161,11 @@
     transparent 100%
   );
 
-  padding: 50px 24px 20px 24px;
+  padding: 60px 24px 20px 24px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  pointer-events: none;
+  pointer-events: none; /* Klicks gehen durch (außer Text) */
 }
 
 .footer-info {
@@ -114,7 +173,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-width: 80%; /* Platz für den Counter rechts lassen */
+  max-width: 80%;
 }
 
 .image-title {
@@ -124,7 +183,7 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Zeile für Ort, Datum, Kamera */
+/* Metadaten Zeile 1 (Datum, Ort) */
 .meta-row {
   display: flex;
   flex-wrap: wrap;
@@ -147,7 +206,7 @@
   opacity: 0.7;
 }
 
-/* Zeile für technische EXIF Daten (ISO, f/, sec) */
+/* Metadaten Zeile 2 (Technische EXIF) */
 .exif-row {
   display: flex;
   gap: 10px;
@@ -160,7 +219,7 @@
   backdrop-filter: blur(4px);
   padding: 2px 8px;
   border-radius: 4px;
-  font-family: 'Roboto Mono', monospace; /* Monospace für Zahlen sieht technisch cool aus */
+  font-family: 'Roboto Mono', monospace;
   font-size: 12px;
   color: #e0e0e0;
 }
@@ -170,4 +229,28 @@
   opacity: 0.6;
   font-variant-numeric: tabular-nums;
   margin-bottom: 4px;
+}
+
+/* Styling für Copyright */
+.copyright {
+  background: rgba(255, 215, 0, 0.15); /* Goldener Touch */
+  color: #ffca28;
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* Styling für Keywords */
+.keyword-pill {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  color: #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 8px 0;
+  max-width: 600px;
 }

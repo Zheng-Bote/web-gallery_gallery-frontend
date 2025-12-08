@@ -1,8 +1,17 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden; /* Verhindert Scrollbar am Host selbst */
+}
+
 .tree-wrapper {
-  padding: 16px 8px;
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  /* FIX 1: Padding verlagern oder box-sizing nutzen */
+  box-sizing: border-box;
+  padding: 16px 8px 0 8px; /* Unten kein Padding, damit Scrollbar bündig ist */
 }
 
 .tree-headline {
@@ -12,11 +21,25 @@
   letter-spacing: 1px;
   color: var(--mat-sys-on-surface-variant);
   font-weight: 600;
+  flex-shrink: 0; /* Überschrift darf nicht schrumpfen */
 }
 
 .tree-content {
-  flex: 1;
-  overflow-y: auto; /* Scrollbar, wenn der Baum zu hoch wird */
+  flex: 1; /* Nimmt den restlichen Platz ein */
+
+  /* FIX 2: Scrollverhalten */
+  overflow-y: auto; /* Nur scrollen wenn nötig */
+  overflow-x: hidden;
+
+  /* FIX 3: Flexbox Scroll Bugfix */
+  min-height: 0;
+
+  /* Das untere Padding verschieben wir IN den Scroll-Container */
+  padding-bottom: 16px;
+
+  /* Optional: Scrollbar dünner machen (Firefox / Modern Browsers) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--mat-sys-outline-variant) transparent;
 }
 
 .no-data {

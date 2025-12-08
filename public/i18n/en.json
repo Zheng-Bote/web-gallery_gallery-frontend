@@ -1,0 +1,8 @@
+{
+  "dialog": {
+    "delete_title": "Delete Photo?",
+    "delete_message": "Do you really want to permanently delete <strong>{{name}}</strong>?",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
+}

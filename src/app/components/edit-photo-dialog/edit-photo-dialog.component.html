@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Bild bearbeiten</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="edit-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Titel</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Beschreibung</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Schlagwörter</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Keywords">
+        @for (keyword of keywords(); track keyword) {
+        <mat-chip-row (removed)="remove(keyword)">
+          {{ keyword }}
+          <button matChipRemove [attr.aria-label]="'Entfernen ' + keyword">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        }
+
+        <input
+          placeholder="Neues Schlagwort..."
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-grid>
+      <mat-hint>Mit Enter oder Komma bestätigen</mat-hint>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Abbrechen</button>
+  <button mat-raised-button color="primary" (click)="save()">Speichern</button>
+</mat-dialog-actions>

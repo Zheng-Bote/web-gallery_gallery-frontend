@@ -1,0 +1,8 @@
+{
+  "dialog": {
+    "delete_title": "Bild löschen?",
+    "delete_message": "Möchtest du <strong>{{name}}</strong> wirklich unwiderruflich löschen?",
+    "cancel": "Abbrechen",
+    "confirm": "Löschen"
+  }
+}

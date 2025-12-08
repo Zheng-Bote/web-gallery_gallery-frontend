@@ -1,10 +1,38 @@
 <div class="viewer-container">
+  @if (currentImage().id && auth.isLoggedIn()) {
+  <div class="actions-top-left">
+    <button
+      mat-icon-button
+      class="action-btn delete-btn"
+      (click)="deleteImage()"
+      matTooltip="Löschen"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      class="action-btn edit-btn"
+      (click)="editPhoto()"
+      matTooltip="Bearbeiten"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  }
+
   <button mat-icon-button class="close-btn" (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
 
   <div class="image-wrapper">
-    <img [src]="currentImage().url" [alt]="currentImage().name" class="main-image" />
+    <img
+      class="main-image"
+      [src]="currentImage().url"
+      [srcset]="currentImage().url | webpUrl : 'srcset'"
+      sizes="(max-width: 600px) 100vw, (max-width: 1200px) 80vw, 1280px"
+      [alt]="currentImage().name"
+    />
 
     @if (currentIndex() > 0) {
     <button mat-icon-button class="nav-btn prev" (click)="prev()">
@@ -19,41 +47,30 @@
 
   <div class="viewer-footer">
     <div class="footer-info">
-      <h3 class="image-title">{{ currentImage().name }}</h3>
+      <h3 class="image-title">
+        {{ currentImage().title || currentImage().name }}
+      </h3>
+
+      @if (currentImage().description) {
+      <p class="image-desc">{{ currentImage().description }}</p>
+      }
 
       <div class="meta-row">
         @if (currentImage().date) {
-        <div class="meta-badge">
-          <mat-icon>calendar_today</mat-icon>
-          <span>{{ currentImage().date | date : 'dd.MM.yyyy HH:mm' }}</span>
-        </div>
-        } @if (currentImage().camera) {
-        <div class="meta-badge">
-          <mat-icon>photo_camera</mat-icon>
-          <span>{{ currentImage().camera }}</span>
-        </div>
-        } @if (currentImage().city) {
-        <div class="meta-badge">
-          <mat-icon>location_on</mat-icon>
-          <span
-            >{{ currentImage().city }} @if(currentImage().country){,
-            {{ currentImage().country }}}</span
-          >
-        </div>
-        }
+        <span>{{ currentImage().date | date : 'medium' : undefined : currentLocale() }}</span> } @if
+        (currentImage().camera) { <span>{{ currentImage().camera }}</span> } @if
+        (currentImage().city) { <span>{{ currentImage().city }}</span> }
       </div>
 
       <div class="exif-row">
-        @if (currentImage().iso) {
-        <span class="exif-tag">ISO {{ currentImage().iso }}</span>
-        } @if (currentImage().aperture) {
-        <span class="exif-tag">ƒ/{{ currentImage().aperture }}</span>
-        } @if (currentImage().exposure_time) {
-        <span class="exif-tag">{{ currentImage().exposure_time }}s</span>
+        @if (currentImage().copyright) {
+        <span class="exif-tag copyright"> &copy; {{ currentImage().copyright }} </span>
+        } @for (keyword of currentImage().keywords; track keyword) {
+        <span class="keyword-pill">{{ keyword }}</span>
         }
       </div>
     </div>
 
-    <span class="image-counter"> {{ currentIndex() + 1 }} / {{ data.images.length }} </span>
+    <span class="image-counter">...</span>
   </div>
 </div>

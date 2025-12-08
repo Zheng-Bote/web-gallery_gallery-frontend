@@ -2,8 +2,10 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../environments/environment';
+
 // Wichtig: Import aus dem Model, NICHT lokal definiert
 import { GalleryItem } from '../models/photo.model';
+import { PhotoUpdateData } from '../models/photo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,11 +30,23 @@ export class GalleryService {
     return this.http.get<any[]>(url).pipe(
       map((items) => {
         return items.map((item) => {
-          // URLs für Bilder absolut machen
-          if (item.type === 'image' && item.url) {
-            item.url = `${this.webUrl}${item.url}`;
+          const galleryItem = item as GalleryItem;
+
+          if (galleryItem.type === 'image' && galleryItem.url) {
+            galleryItem.url = `${this.webUrl}${galleryItem.url}`;
           }
-          return item as GalleryItem;
+
+          // --- FIX: Keywords String -> Array umwandeln ---
+          // Das Backend sendet "keywords_string": "A,B,C"
+          if (item['keywords_string']) {
+            galleryItem.keywords = (item['keywords_string'] as string)
+              .split(',')
+              .filter((k) => k.trim() !== '');
+          } else {
+            galleryItem.keywords = [];
+          }
+
+          return galleryItem;
         });
       })
     );
@@ -48,5 +62,13 @@ export class GalleryService {
     });
 
     return this.http.request(req);
+  }
+
+  updatePhotoMetadata(id: number, data: PhotoUpdateData): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/api/gallery/${id}`, data);
+  }
+
+  deletePhoto(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/api/gallery/${id}`);
   }
 }

@@ -12,11 +12,12 @@ import { LayoutService } from '../../service/layout.service';
 import { NotificationService } from '../../service/notification.service';
 import { PhotoViewerComponent } from '../photo-viewer/photo-viewer.component';
 import { GalleryItem } from '../../models/photo.model';
+import { WebpUrlPipe } from '../../pipes/webp-url.pipe';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [RouterLink, MatIcon, MatProgressSpinner, MatButtonModule],
+  imports: [RouterLink, MatIcon, MatProgressSpinner, MatButtonModule, WebpUrlPipe],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.css',
 })
@@ -113,26 +114,27 @@ export class GalleryComponent implements OnInit {
     const index = imagesOnly.findIndex((x) => x.name === clickedItem.name);
 
     if (index !== -1) {
-      this.dialog.open(PhotoViewerComponent, {
-        // --- GRÖSSE & POSITION ---
-        width: '85vw', // 85% der Breite (etwas mehr als 80% sieht meist besser aus)
-        height: '85vh', // 85% der Höhe
-        maxWidth: '95vw', // Verhindert, dass es auf Ultrawide zu breit wird
+      // KORREKTUR 1: Ergebnis in lokaler Variable speichern
+      const dialogRef = this.dialog.open(PhotoViewerComponent, {
+        width: '85vw',
+        height: '85vh',
+        maxWidth: '95vw',
         maxHeight: '95vh',
-
-        // --- STYLING ---
-        panelClass: 'photo-modal-panel', // Unsere Klasse für Schatten & Radius
-        backdropClass: 'blur-backdrop', // Unsere Klasse für den Blur-Effekt
-
-        // --- DATEN ---
+        panelClass: 'photo-modal-panel',
+        backdropClass: 'blur-backdrop',
         data: {
           images: imagesOnly,
           startIndex: index,
         },
-
-        // --- VERHALTEN ---
-        autoFocus: false, // Verhindert, dass der erste Button Fokus klaut
+        autoFocus: false,
         restoreFocus: false,
+      });
+
+      // KORREKTUR 2: Lokale Variable nutzen (ohne 'this.')
+      dialogRef.afterClosed().subscribe((deletedId: number | undefined) => {
+        if (deletedId) {
+          this.items.update((current) => current.filter((item) => item.id !== deletedId));
+        }
       });
     }
   }

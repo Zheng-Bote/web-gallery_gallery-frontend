@@ -28,7 +28,12 @@
     </a>
     } @if (item.type === 'image') {
     <div class="gallery-item image" (click)="openImage(item)">
-      <img [src]="item.url" [alt]="item.name" loading="lazy" />
+      <picture>
+        <source [srcset]="item.url | webpUrl : 'thumbnail'" type="image/webp" />
+
+        <img [src]="item.url" [alt]="item.name" loading="lazy" class="grid-img" />
+      </picture>
+
       <div class="overlay">
         <span>{{ item.name }}</span>
       </div>

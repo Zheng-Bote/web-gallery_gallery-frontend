@@ -8,6 +8,12 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 
+// Locale Daten importieren
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+
+registerLocaleData(localeDe);
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
