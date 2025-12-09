@@ -1,16 +1,16 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { NotificationService } from '../service/notification.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
+  const notify = inject(NotificationService);
 
-  // 1. Token aus dem Speicher holen
+  // Token holen
   const token = localStorage.getItem('token');
 
-  // 2. Request klonen und Header setzen (wenn Token existiert)
-  // WICHTIG: Original-Requests sind immutable (unveränderlich), daher clone()
   let authReq = req;
   if (token) {
     authReq = req.clone({
@@ -20,18 +20,30 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     });
   }
 
-  // 3. Request weiterschicken und auf Antwort lauschen
   return next(authReq).pipe(
-    catchError((err) => {
-      // Bonus: Automatische Weiterleitung bei 401 (Token abgelaufen/ungültig)
+    catchError((err: HttpErrorResponse) => {
+      // --- HIER FANGEN WIR DEN FEHLER AB ---
       if (err.status === 401) {
-        // Optional: LocalStorage leeren
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
+        // Optional: Prüfen, ob es wirklich "token expired" ist
+        // (Dein Backend sendet: {"error": "...", "details": "token expired"})
+        const isExpired =
+          err.error?.details?.includes('token expired') ||
+          err.error?.error?.includes('Token verification failed');
 
-        // Zurück zum Login
-        router.navigate(['/login']);
+        if (isExpired || err.status === 401) {
+          // 1. Storage aufräumen (Token wegwerfen)
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+
+          // 2. User informieren (damit er sich nicht wundert)
+          notify.error('Sitzung abgelaufen. Bitte neu einloggen.');
+
+          // 3. Zum Login umleiten
+          router.navigate(['/login']);
+        }
       }
+
+      // Fehler weiterwerfen, damit die Komponente (z.B. Ladebalken beenden) Bescheid weiß
       return throwError(() => err);
     })
   );
