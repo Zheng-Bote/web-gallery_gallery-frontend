@@ -164,7 +164,14 @@ bla bla ... with a little help from my friends
 ├── README.md
 ├── angular.json
 ├── docs
-│   └── nginx.md
+│   ├── about_de_dark-mode.png
+│   ├── about_en_light-mode.png
+│   ├── darkmode.png
+│   ├── nginx.md
+│   ├── photo.png
+│   ├── startpage_de.png
+│   ├── startpage_en.png
+│   └── upload.png
 ├── package-lock.json
 ├── package.json
 ├── public
@@ -203,6 +210,16 @@ bla bla ... with a little help from my friends
 │   │   │   │   ├── breadcrumbs.component.html
 │   │   │   │   ├── breadcrumbs.component.spec.ts
 │   │   │   │   └── breadcrumbs.component.ts
+│   │   │   ├── confirm-dialog
+│   │   │   │   ├── confirm-dialog.component.css
+│   │   │   │   ├── confirm-dialog.component.html
+│   │   │   │   ├── confirm-dialog.component.spec.ts
+│   │   │   │   └── confirm-dialog.component.ts
+│   │   │   ├── edit-photo-dialog
+│   │   │   │   ├── edit-photo-dialog.component.css
+│   │   │   │   ├── edit-photo-dialog.component.html
+│   │   │   │   ├── edit-photo-dialog.component.spec.ts
+│   │   │   │   └── edit-photo-dialog.component.ts
 │   │   │   ├── footer
 │   │   │   │   ├── footer.component.css
 │   │   │   │   ├── footer.component.html
@@ -252,6 +269,9 @@ bla bla ... with a little help from my friends
 │   │   ├── models
 │   │   │   ├── auth.model.ts
 │   │   │   └── photo.model.ts
+│   │   ├── pipes
+│   │   │   ├── webp-url.pipe.spec.ts
+│   │   │   └── webp-url.pipe.ts
 │   │   ├── service
 │   │   │   ├── auth.guard.ts
 │   │   │   ├── auth.service.spec.ts
@@ -275,7 +295,7 @@ bla bla ... with a little help from my friends
 ├── tsconfig.json
 └── tsconfig.spec.json
 
-31 directories, 104 files
+34 directories, 121 files
 ```
 <!-- readme-tree end -->
 
