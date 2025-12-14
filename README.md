@@ -146,4 +146,164 @@ src/
 
 # doof
 
-f
+<!-- readme-tree start -->
+```
+.
+├── .github
+│   ├── actions
+│   │   └── doctoc
+│   │       ├── README.md
+│   │       ├── action.yml
+│   │       └── dist
+│   │           ├── index.js
+│   │           ├── index.js.map
+│   │           ├── licenses.txt
+│   │           └── sourcemap-register.js
+│   └── workflows
+│       ├── ghp-call_Readme.yml
+│       ├── ghp-create_doctoc.yml
+│       ├── ghp-markdown_index.yml
+│       ├── repo-actions_docu.yml
+│       ├── repo-call_Readme.yml
+│       ├── repo-create_doctoc.yml_
+│       ├── repo-create_doctoc_md.yml
+│       └── repo-create_tree_readme.yml
+├── .gitignore
+├── LICENSE
+├── README.md
+├── angular.json
+├── docs
+│   ├── about_de_dark-mode.png
+│   ├── about_en_light-mode.png
+│   ├── darkmode.png
+│   ├── nginx.md
+│   ├── photo.png
+│   ├── startpage_de.png
+│   ├── startpage_en.png
+│   └── upload.png
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   └── i18n
+│       ├── about
+│       │   ├── de.json
+│       │   └── en.json
+│       ├── de.json
+│       ├── en.json
+│       ├── home
+│       │   ├── de.json
+│       │   └── en.json
+│       ├── impressum
+│       │   ├── de.json
+│       │   └── en.json
+│       └── login
+│           ├── de.json
+│           └── en.json
+├── src
+│   ├── app
+│   │   ├── app.config.ts
+│   │   ├── app.css
+│   │   ├── app.html
+│   │   ├── app.routes.ts
+│   │   ├── app.spec.ts
+│   │   ├── app.ts
+│   │   ├── components
+│   │   │   ├── about
+│   │   │   │   ├── about.component.css
+│   │   │   │   ├── about.component.html
+│   │   │   │   ├── about.component.spec.ts
+│   │   │   │   └── about.component.ts
+│   │   │   ├── breadcrumbs
+│   │   │   │   ├── breadcrumbs.component.css
+│   │   │   │   ├── breadcrumbs.component.html
+│   │   │   │   ├── breadcrumbs.component.spec.ts
+│   │   │   │   └── breadcrumbs.component.ts
+│   │   │   ├── confirm-dialog
+│   │   │   │   ├── confirm-dialog.component.css
+│   │   │   │   ├── confirm-dialog.component.html
+│   │   │   │   ├── confirm-dialog.component.spec.ts
+│   │   │   │   └── confirm-dialog.component.ts
+│   │   │   ├── edit-photo-dialog
+│   │   │   │   ├── edit-photo-dialog.component.css
+│   │   │   │   ├── edit-photo-dialog.component.html
+│   │   │   │   ├── edit-photo-dialog.component.spec.ts
+│   │   │   │   └── edit-photo-dialog.component.ts
+│   │   │   ├── footer
+│   │   │   │   ├── footer.component.css
+│   │   │   │   ├── footer.component.html
+│   │   │   │   ├── footer.component.spec.ts
+│   │   │   │   └── footer.component.ts
+│   │   │   ├── gallery
+│   │   │   │   ├── gallery.component.css
+│   │   │   │   ├── gallery.component.html
+│   │   │   │   ├── gallery.component.spec.ts
+│   │   │   │   └── gallery.component.ts
+│   │   │   ├── header
+│   │   │   │   ├── header.component.css
+│   │   │   │   ├── header.component.html
+│   │   │   │   ├── header.component.spec.ts
+│   │   │   │   └── header.component.ts
+│   │   │   ├── home
+│   │   │   │   ├── home.component.css
+│   │   │   │   ├── home.component.html
+│   │   │   │   ├── home.component.spec.ts
+│   │   │   │   └── home.component.ts
+│   │   │   ├── impressum
+│   │   │   │   ├── impressum.component.css
+│   │   │   │   ├── impressum.component.html
+│   │   │   │   ├── impressum.component.spec.ts
+│   │   │   │   └── impressum.component.ts
+│   │   │   ├── login
+│   │   │   │   ├── login.component.css
+│   │   │   │   ├── login.component.html
+│   │   │   │   ├── login.component.spec.ts
+│   │   │   │   └── login.component.ts
+│   │   │   ├── navigation-tree
+│   │   │   │   ├── navigation-tree.component.css
+│   │   │   │   ├── navigation-tree.component.html
+│   │   │   │   ├── navigation-tree.component.ts
+│   │   │   │   └── tree-node.component.ts
+│   │   │   ├── photo-viewer
+│   │   │   │   ├── photo-viewer.component.css
+│   │   │   │   ├── photo-viewer.component.html
+│   │   │   │   └── photo-viewer.component.ts
+│   │   │   └── upload
+│   │   │       ├── upload.component.css
+│   │   │       ├── upload.component.html
+│   │   │       ├── upload.component.spec.ts
+│   │   │       └── upload.component.ts
+│   │   ├── interceptors
+│   │   │   └── auth.interceptor.ts
+│   │   ├── models
+│   │   │   ├── auth.model.ts
+│   │   │   └── photo.model.ts
+│   │   ├── pipes
+│   │   │   ├── webp-url.pipe.spec.ts
+│   │   │   └── webp-url.pipe.ts
+│   │   ├── service
+│   │   │   ├── auth.guard.ts
+│   │   │   ├── auth.service.spec.ts
+│   │   │   ├── auth.service.ts
+│   │   │   ├── gallery.service.ts
+│   │   │   ├── layout.service.ts
+│   │   │   ├── navigation.model.ts
+│   │   │   ├── notification.service.ts
+│   │   │   └── theme.service.ts
+│   │   └── transloco-loader.ts
+│   ├── custom-theme.scss
+│   ├── environments
+│   │   ├── environment.development.ts
+│   │   └── environment.ts
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.css
+├── transloco.config.ts
+├── tree.bak
+├── tsconfig.app.json
+├── tsconfig.json
+└── tsconfig.spec.json
+
+34 directories, 121 files
+```
+<!-- readme-tree end -->
