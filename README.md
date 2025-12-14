@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [CrowGallery - Web Frontend](#crowgallery---web-frontend)
+  - [🚀 Features](#-features)
+    - [🔐 Authentication & Security](#-authentication--security)
+    - [📸 Dashboard & UI](#-dashboard--ui)
+    - [🛠️ Administration](#-administration)
+  - [🏗️ Architecture](#-architecture)
+    - [High-Level Data Flow](#high-level-data-flow)
+- [Doof](#doof)
+- [📂 Project Structure](#-project-structure)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # CrowGallery - Web Frontend
 
 ![Angular](https://img.shields.io/badge/Angular-v21-dd0031.svg?style=flat&logo=angular)
