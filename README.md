@@ -1,501 +1,149 @@
-<div id="top" align="center">
-<h1>web-gallery_gallery-frontend</h1>
+# CrowGallery - Web Frontend
 
-<p>Angular Web-Frontend for Web-Gallery</p>
+![Angular](https://img.shields.io/badge/Angular-v21-dd0031.svg?style=flat&logo=angular)
+![Material](https://img.shields.io/badge/Material-v21-3f51b5.svg?style=flat&logo=angular)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-[Report Issue](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/issues) [Request Feature](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/pulls)
+**CrowGallery Frontend** is a modern, responsive single-page application (SPA) designed to manage and view photo collections. It serves as the user interface for the high-performance C++ [CrowQtServer] backend.
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/web-gallery_gallery-frontend?logo=GitHub)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/releases)
+Built with **Angular v21**, it leverages the latest framework capabilities such as **Standalone Components**, **Signals** for fine-grained reactivity, and **Angular Material** for a polished, accessible UI.
 
-</div>
+---
 
-<hr>
+## 🚀 Features
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+### 🔐 Authentication & Security
+* **JWT Authentication:** Robust handling of Access and Refresh Tokens.
+* **Role-Based Access:** Distinct capabilities for standard `User` and `Admin`.
+* **Security Guards:** Functional Route Guards (`AuthGuard`, `PasswordResetGuard`) protect sensitive routes.
+* **Forced Password Rotation:** Logic to enforce password changes for new users or expired credentials.
+* **Automatic Token Injection:** HTTP Interceptor attaches Bearer tokens to all outgoing API requests.
 
-- [Description](#description)
-    - [Features](#features)
-- [Status](#status)
-    - [Documentation](#documentation)
-      - [README](#readme)
-      - [other Markdown files](#other-markdown-files)
-- [Installation](#installation)
-  - [Dependencies](#dependencies)
-  - [folder structure](#folder-structure)
-  - [Usage/Examples/Tests](#usageexamplestests)
-- [API Reference](#api-reference)
-  - [Inputs](#inputs)
-  - [Outputs](#outputs)
-  - [Parameters](#parameters)
-- [Documentation](#documentation-1)
-  - [Architecture](#architecture)
-    - [Github](#github)
-      - [Github Repo](#github-repo)
-      - [Github Actions / Workflows](#github-actions--workflows)
-  - [Application](#application)
-  - [DevOps](#devops)
-  - [Github Page](#github-page)
-  - [Github Wiki](#github-wiki)
-  - [Comments](#comments)
-  - [Screenshots](#screenshots)
-- [Authors and License](#authors-and-license)
-  - [License](#license)
-  - [Authors](#authors)
-    - [Code Contributors](#code-contributors)
+### 📸 Dashboard & UI
+* **Responsive Layout:** Adaptive grid system for mobile and desktop views.
+* **Status Visualization:** Color-coded status indicators for user accounts (Active/Locked).
+* **Modern UX:** Clean aesthetic using Material Design 3 components.
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+### 🛠️ Administration
+* **User Management:** Admins can Create, Delete, and Deactivate users via a data table.
+* **Password Resets:** Admin-triggered password resets using a dedicated Modal Dialog.
 
-<hr>
+---
 
-# Description
+## 🏗️ Architecture
 
-![Angular](https://img.shields.io/badge/Angular-21+-red?logo=angular)
-![HTML5](https://img.shields.io/badge/HTML-5+-E34F26?logo=html5)
-![CSS3](https://img.shields.io/badge/CSS-3-663399?logo=css3)
+This project adopts a **Feature-Based Architecture** using **Angular Standalone Components**. This approach eliminates `NgModules`, reducing boilerplate and improving build performance (tree-shaking).
 
-Angular Web-Frontend for Web-Gallery
-
-### Features
-
-- \[ ] advanced-super-extra-special feature xyz
-
-  <br>
-
-- \[x] OSS and license
-- \[x] works as designed
-- \[ ] no bugs
-
-<br>
-
-- \[x] some more or less usefull Github Actions for GH-repo, GH-pages, GH-wiki, CI/CD-Pipelines
-- \[ ] Packagemanager
-- \[ ] Installation routine
-- \[ ] portable application
-
-<br>
-
-- \[ ] runs on DOS/Windows
-- \[ ] runs on MacOS
-- \[ ] runs on Linux
-- \[ ] runs on iOS
-- \[ ] runs on Android
-- \[ ] runs on HarmonyOS
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-# Status
-
-:arrow_right: <mark>:warning: still under construction :warning:</mark> :arrow_left:
-
-![GitHub Created At](https://img.shields.io/github/created-at/Zheng-Bote/web-gallery_gallery-frontend)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Zheng-Bote/web-gallery_gallery-frontend?logo=GitHub)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/releases)
-![GitHub Release Date](https://img.shields.io/github/release-date/Zheng-Bote/web-gallery_gallery-frontend)
-![Status](https://img.shields.io/badge/Status-stable-green)
-![Status](https://img.shields.io/badge/Status-under_construction-red)
-![Status](https://img.shields.io/badge/Status-works_as_designed-green)
-
-![GitHub Created At](https://img.shields.io/github/created-at/Zheng-Bote/web-gallery_gallery-frontend)
-![GitHub Release Date](https://img.shields.io/github/release-date/Zheng-Bote/web-gallery_gallery-frontend)
-
-![GitHub Issues](https://img.shields.io/github/issues/Zheng-Bote/web-gallery_gallery-frontend)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Zheng-Bote/web-gallery_gallery-frontend)
-
-### Documentation
-
-_see also:_ [Application Documentation](#documentation)
-
-#### README
-
-[![Repo - create Repo-Tree in README.md](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_tree_readme.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_tree_readme.yml)
-[![Repo - add Actions In/Out to README](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-actions_docu.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-actions_docu.yml)
-
-[![Repo - update Readme](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-call_Readme.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-call_Readme.yml)
-
-#### other Markdown files
-
-[![Repo - create TOC of Markdown files](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_doctoc_md.yml/badge.svg)](https://github.com/Zheng-Bote/web-gallery_gallery-frontend/actions/workflows/repo-create_doctoc_md.yml)
-
-create ToC in Markdown files in folders
-
-- .github/actions/\*\*
-- .github/workflows/\*\*
-- dist/\*\*
-- docs/\*\*
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-# Installation
-
-bla bla ... everything easy and green with No Code/Low code and without any costs
-
-## Dependencies
-
-bla bla ... with a little help from my friends
-
-## folder structure
-
-<!-- readme-tree start -->
-```
-.
-├── .github
-│   ├── actions
-│   │   └── doctoc
-│   │       ├── README.md
-│   │       ├── action.yml
-│   │       └── dist
-│   │           ├── index.js
-│   │           ├── index.js.map
-│   │           ├── licenses.txt
-│   │           └── sourcemap-register.js
-│   └── workflows
-│       ├── ghp-call_Readme.yml
-│       ├── ghp-create_doctoc.yml
-│       ├── ghp-markdown_index.yml
-│       ├── repo-actions_docu.yml
-│       ├── repo-call_Readme.yml
-│       ├── repo-create_doctoc.yml_
-│       ├── repo-create_doctoc_md.yml
-│       └── repo-create_tree_readme.yml
-├── .gitignore
-├── LICENSE
-├── README.md
-├── angular.json
-├── docs
-│   ├── about_de_dark-mode.png
-│   ├── about_en_light-mode.png
-│   ├── darkmode.png
-│   ├── nginx.md
-│   ├── photo.png
-│   ├── startpage_de.png
-│   ├── startpage_en.png
-│   └── upload.png
-├── package-lock.json
-├── package.json
-├── public
-│   ├── favicon.ico
-│   └── i18n
-│       ├── about
-│       │   ├── de.json
-│       │   └── en.json
-│       ├── de.json
-│       ├── en.json
-│       ├── home
-│       │   ├── de.json
-│       │   └── en.json
-│       ├── impressum
-│       │   ├── de.json
-│       │   └── en.json
-│       └── login
-│           ├── de.json
-│           └── en.json
-├── src
-│   ├── app
-│   │   ├── app.config.ts
-│   │   ├── app.css
-│   │   ├── app.html
-│   │   ├── app.routes.ts
-│   │   ├── app.spec.ts
-│   │   ├── app.ts
-│   │   ├── components
-│   │   │   ├── about
-│   │   │   │   ├── about.component.css
-│   │   │   │   ├── about.component.html
-│   │   │   │   ├── about.component.spec.ts
-│   │   │   │   └── about.component.ts
-│   │   │   ├── breadcrumbs
-│   │   │   │   ├── breadcrumbs.component.css
-│   │   │   │   ├── breadcrumbs.component.html
-│   │   │   │   ├── breadcrumbs.component.spec.ts
-│   │   │   │   └── breadcrumbs.component.ts
-│   │   │   ├── confirm-dialog
-│   │   │   │   ├── confirm-dialog.component.css
-│   │   │   │   ├── confirm-dialog.component.html
-│   │   │   │   ├── confirm-dialog.component.spec.ts
-│   │   │   │   └── confirm-dialog.component.ts
-│   │   │   ├── edit-photo-dialog
-│   │   │   │   ├── edit-photo-dialog.component.css
-│   │   │   │   ├── edit-photo-dialog.component.html
-│   │   │   │   ├── edit-photo-dialog.component.spec.ts
-│   │   │   │   └── edit-photo-dialog.component.ts
-│   │   │   ├── footer
-│   │   │   │   ├── footer.component.css
-│   │   │   │   ├── footer.component.html
-│   │   │   │   ├── footer.component.spec.ts
-│   │   │   │   └── footer.component.ts
-│   │   │   ├── gallery
-│   │   │   │   ├── gallery.component.css
-│   │   │   │   ├── gallery.component.html
-│   │   │   │   ├── gallery.component.spec.ts
-│   │   │   │   └── gallery.component.ts
-│   │   │   ├── header
-│   │   │   │   ├── header.component.css
-│   │   │   │   ├── header.component.html
-│   │   │   │   ├── header.component.spec.ts
-│   │   │   │   └── header.component.ts
-│   │   │   ├── home
-│   │   │   │   ├── home.component.css
-│   │   │   │   ├── home.component.html
-│   │   │   │   ├── home.component.spec.ts
-│   │   │   │   └── home.component.ts
-│   │   │   ├── impressum
-│   │   │   │   ├── impressum.component.css
-│   │   │   │   ├── impressum.component.html
-│   │   │   │   ├── impressum.component.spec.ts
-│   │   │   │   └── impressum.component.ts
-│   │   │   ├── login
-│   │   │   │   ├── login.component.css
-│   │   │   │   ├── login.component.html
-│   │   │   │   ├── login.component.spec.ts
-│   │   │   │   └── login.component.ts
-│   │   │   ├── navigation-tree
-│   │   │   │   ├── navigation-tree.component.css
-│   │   │   │   ├── navigation-tree.component.html
-│   │   │   │   ├── navigation-tree.component.ts
-│   │   │   │   └── tree-node.component.ts
-│   │   │   ├── photo-viewer
-│   │   │   │   ├── photo-viewer.component.css
-│   │   │   │   ├── photo-viewer.component.html
-│   │   │   │   └── photo-viewer.component.ts
-│   │   │   └── upload
-│   │   │       ├── upload.component.css
-│   │   │       ├── upload.component.html
-│   │   │       ├── upload.component.spec.ts
-│   │   │       └── upload.component.ts
-│   │   ├── interceptors
-│   │   │   └── auth.interceptor.ts
-│   │   ├── models
-│   │   │   ├── auth.model.ts
-│   │   │   └── photo.model.ts
-│   │   ├── pipes
-│   │   │   ├── webp-url.pipe.spec.ts
-│   │   │   └── webp-url.pipe.ts
-│   │   ├── service
-│   │   │   ├── auth.guard.ts
-│   │   │   ├── auth.service.spec.ts
-│   │   │   ├── auth.service.ts
-│   │   │   ├── gallery.service.ts
-│   │   │   ├── layout.service.ts
-│   │   │   ├── navigation.model.ts
-│   │   │   ├── notification.service.ts
-│   │   │   └── theme.service.ts
-│   │   └── transloco-loader.ts
-│   ├── custom-theme.scss
-│   ├── environments
-│   │   ├── environment.development.ts
-│   │   └── environment.ts
-│   ├── index.html
-│   ├── main.ts
-│   └── styles.css
-├── transloco.config.ts
-├── tree.bak
-├── tsconfig.app.json
-├── tsconfig.json
-└── tsconfig.spec.json
-
-34 directories, 121 files
-```
-<!-- readme-tree end -->
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Usage/Examples/Tests
-
-bla bla ... usage is intuitive and runs mostly automatically with no needs of any knowledge
-
-```HTML
-<mark> under construction </mark>
-```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-# API Reference
-
-<hr>
-
-![GHA](https://img.shields.io/badge/Github-Action-black?logo=githubactions)
-
-_Inputs/Outputs will be filled automatically by `.github/workflows/repo-actions_docu.yml`_
-
-## Inputs
-
-## Outputs
-
-<hr>
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Parameters
-
-**Workflow or program**
-
-| Parameter    | Type     | Description                          |
-| :----------- | :------- | :----------------------------------- |
-| `name`       | `string` | _Optional_ name-of-copyright-holder  |
-| `created`    | `string` | _Optional_ <YYYY>                    |
-| `version`    | `string` | _Optional_ \<v0.0.0>                 |
-| `link_left`  | `string` | _Optional_ link-to-contact-page      |
-| `link_right` | `string` | _Optional_ link-to-legal-notice-page |
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-# Documentation
-
-see also: <https://linktodocumentation>
-
-## Architecture
-
-### Github
-
-#### Github Repo
+### High-Level Data Flow
 
 ```mermaid
-block-beta
-  columns 4
-  Repo:4
-  block:group1:1
-    columns 1
-    id0[".github"]
-    block:group2:1
-      columns 1
-      id1[["workflows"]]
-      id2[["actions"]]
+graph TD
+    User[User Interaction] -->|Events| View[Component Template]
+    View -->|Update| Component[Standalone Component]
+    
+    subgraph "State Management (Signals)"
+        Component -->|Read/Write| Signal[AuthService Signals]
+        Signal -->|Reactivity| View
     end
-  end
-  docs dist src
-  block:group3:4
-    %% columns auto (default)
-    A["gh-pages"] B["gh-wiki"]
-  end
+
+    subgraph "Data Layer"
+        Component -->|Call| Service[Admin/Auth Service]
+        Service -->|HTTP| Client[HttpClient]
+        Client -->|Intercept| Interceptor[AuthInterceptor]
+        Interceptor -->|Add Header| API[Backend API]
+    end
 ```
 
-#### Github Actions / Workflows
 
-```mermaid
-flowchart TD;
-    A[Workflow]-. parameter .->B[[callable Workflow]]
-    B-- parameter -->C[Action]
-    C-->D(README)
+# Doof
 
-    A[Workflow]-. parameter .->E[[callable Workflow]]
-    E-- parameter -->F[Action]
-    F-->J(Markdown files)
+<pre>
+Key Architectural Concepts
+Signal-Driven State:
 
-    A[Workflow]-->K[[Workflow]]
-    K-->L[Action]
-    L-->M("GH-Pages")
+We utilize Angular Signals (e.g., currentUser, passwordChangeRequired) instead of complex RxJS streams for synchronous state management.
 
-    A[Workflow]-->N[[Workflow]]
-    N-->O[Action]
-    O-->P("GH-Wiki")
-```
+This ensures "Zoneless" compatibility and fine-grained UI updates.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Standalone Components:
 
-## Application
+Components (e.g., UserManagementComponent, NavbarComponent) directly import their dependencies.
 
-```mermaid
-architecture-beta
-    group api(cloud)[API]
+This makes the codebase easier to refactor and test.
 
-    service db(database)[Database] in api
-    service server0(server)[Webserver] in api
-    service disk2(disk)[Storage] in api
-    service server(server)[Appserver] in api
+Security Layer:
 
-    db:L -- R:server
-    server0:T -- B:server
-    disk2:T -- B:server
-```
+Interceptor: The authInterceptor centrally manages the Authorization header.
 
-## DevOps
+Guards: Functional guards (CanActivateFn) handle redirect logic (e.g., forcing a user to change their password before accessing the dashboard).
 
-```mermaid
-pie title me
-         "ideas" : 90
-         "time for realizations" : 7
-         "money for realizations" : 3
-```
+🛠️ Tech Stack
+Framework: Angular v21
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+Language: TypeScript 5.x
 
-## Github Page
+UI Library: Angular Material v21 & CDK
 
-[![GH-Page](https://img.shields.io/badge/Github-Pages-black?logo=github)](https://www.github.com/Zheng-Bote)
+Styling: SCSS / CSS3 (Grid & Flexbox)
 
-## Github Wiki
+Icons: Material Icons
 
-[![GH-Wiki](https://img.shields.io/badge/Github-Wiki-black?logo=github)](https://www.github.com/Zheng-Bote)
+Build Tool: Angular CLI
 
-## Comments
+⚙️ Installation & Setup
+Prerequisites
+Node.js (v18 or higher)
 
-> \[!NOTE]
-> Useful information that users should know, even when skimming content.
+npm
 
-> \[!TIP]
-> Helpful advice for doing things better or more easily.
+Running instance of the CrowQtServer backend.
 
-> \[!IMPORTANT]
-> Key information users need to know to achieve their goal.
+1. Clone the repository
+Bash
 
-> \[!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+git clone [https://github.com/yourusername/web-gallery-frontend.git](https://github.com/yourusername/web-gallery-frontend.git)
+cd web-gallery-frontend
+2. Install Dependencies
+Bash
 
-> \[!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+npm install
+3. Configure Environment
+Check src/environments/environment.ts. Ensure apiUrl points to your C++ backend.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+TypeScript
 
-## Screenshots
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080' // Adjust port if necessary
+};
+4. Run Development Server
+Bash
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+ng serve
+Navigate to http://localhost:4200/.
+    
+</pre>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
-# Authors and License
+# 📂 Project Structure
 
-## License
+```bash
+src/
+├── app/
+│   ├── components/      # Shared UI (Navbar, etc.)
+│   ├── dialogs/         # Modal Dialogs (Password Reset)
+│   ├── guards/          # Route protection logic
+│   ├── interceptors/    # HTTP Request modification
+│   ├── models/          # TypeScript Interfaces
+│   ├── pages/           # Views (Dashboard, Login, Admin)
+│   ├── service/         # API communication & State
+│   ├── app.component.ts # Root layout
+│   ├── app.config.ts    # Global provider config
+│   └── app.routes.ts    # Routing definitions
+└── environments/        # API configuration
 
-**This web-gallery_gallery-frontend is using the MIT-License**
+`o
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+# doof
 
-Copyright (c) 2025 ZHENG Robert
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-        https://choosealicense.com/licenses/mit/
-
-## Authors
-
-- [![Zheng Robert](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
-
-### Code Contributors
-
-![Contributors](https://img.shields.io/github/contributors/Zheng-Bote/web-gallery_gallery-frontend?color=dark-green)
-
-[![Zheng Robert](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
-
-<hr>
-
-:vulcan_salute:
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+f
