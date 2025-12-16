@@ -18,18 +18,18 @@
 
 - [Description](#description)
   - [🚀 Features](#-features)
-    - [🔐 Authentication \& Security](#-authentication--security)
-    - [📸 Dashboard \& UI](#-dashboard--ui)
-    - [🛠️ Administration](#️-administration)
-- [⚙️ Installation \& Setup](#️-installation--setup)
+    - [🔐 Authentication & Security](#-authentication--security)
+    - [📸 Dashboard & UI](#-dashboard--ui)
+    - [🛠️ Administration](#-administration)
+- [⚙️ Installation & Setup](#-installation--setup)
 - [📂 Project Structure](#-project-structure)
-- [🏗️ Architecture](#️-architecture)
-  - [High-Level Data Flow](#high-level-data-flow)
-  - [Key Architectural Concepts](#key-architectural-concepts)
-  - [🛠️ Tech Stack](#️-tech-stack)
+- [🏗️ Architecture](#-architecture)
+    - [High-Level Data Flow](#high-level-data-flow)
+    - [Key Architectural Concepts](#key-architectural-concepts)
+  - [🛠️ Tech Stack](#-tech-stack)
 - [📄 License](#-license)
 - [Authors](#authors)
-  - [Code Contributors](#code-contributors)
+    - [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
