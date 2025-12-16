@@ -27,6 +27,7 @@
   - [High-Level Data Flow](#high-level-data-flow)
   - [Key Architectural Concepts](#key-architectural-concepts)
   - [🛠️ Tech Stack](#️-tech-stack)
+- [📄 License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -177,3 +178,7 @@ graph TD
 - Styling: SCSS / CSS3 (Grid & Flexbox)
 - Icons: Material Icons
 - Build Tool: Angular CLI
+
+# 📄 License
+
+Distributed under the MIT License. See LICENSE for more information.
