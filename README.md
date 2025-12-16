@@ -28,6 +28,8 @@
   - [Key Architectural Concepts](#key-architectural-concepts)
   - [🛠️ Tech Stack](#️-tech-stack)
 - [📄 License](#-license)
+- [Authors](#authors)
+  - [Code Contributors](#code-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -182,3 +184,19 @@ graph TD
 # 📄 License
 
 Distributed under the MIT License. See LICENSE for more information.
+
+Copyright (c) 2025 ZHENG Robert
+
+# Authors
+
+- [![Zheng Robert - Core Development](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
+
+### Code Contributors
+
+![Contributors](https://img.shields.io/github/contributors/Zheng-Bote/web-gallery_webserver-admin?color=dark-green)
+
+[![Zheng Robert](https://img.shields.io/badge/Github-Zheng_Robert-black?logo=github)](https://www.github.com/Zheng-Bote)
+
+<hr>
+
+:vulcan_salute:
